@@ -7,6 +7,8 @@ from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.views.decorators.csrf import csrf_protect
 from pure_pagination.mixins import PaginationMixin
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -56,6 +58,8 @@ def search(request):
     if request.method == 'POST':
         query_text = request.POST.get("query_text")
         article_list = get_list_or_404(Article, title__icontains=query_text)
+    else:
+        return HttpResponseRedirect(reverse("subject:index"))
 
     return render(request, 'subject/index.html', context={'article_list': article_list})
 
