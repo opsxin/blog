@@ -50,3 +50,18 @@ class Article(models.Model):
         verbose_name = "文章"
         verbose_name_plural = verbose_name
         ordering = ["-modify_time"]
+
+
+class Contact(models.Model):
+    name = models.CharField("姓名", max_length=10)
+    email = models.EmailField("邮箱")
+    subject = models.CharField("主题", max_length=50)
+    message = models.TextField("信息")
+    publish_time = models.DateTimeField("留言时间", auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "留言"
+        verbose_name_plural = verbose_name

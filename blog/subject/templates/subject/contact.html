@@ -53,10 +53,10 @@
 						<a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
 						<div id="search-form" class="search-form">
 							<form role="search" method="POST" id="searchform" action="{% url 'subject:search' %}">
-                                {% csrf_token %}
-                                <input type="search" name="query_text" placeholder="搜索" required>
-                                <button type="submit"><span class="ion-ios-search-strong"></span></button>
-                            </form>
+								{% csrf_token %}
+								<input type="search" name="query_text" placeholder="搜索" required>
+								<button type="submit"><span class="ion-ios-search-strong"></span></button>
+							</form>
 						</div>
 					</div>
 				</div><!-- col-md-8 -->
@@ -68,19 +68,24 @@
 		<div class="container">
 			<div class="row">
 				<main class="col-md-12">
-					<h1 class="page-title">Contact</h1>
+					{% if message %}
+					<div>
+						<p text-algin="center" style="color:red">{{ message }}</p>
+					</div>
+					{% endif %}
+					<h1 class="page-title">联系</h1>
 					<article class="post">
 						<div class="entry-content clearfix">
 							<form action="#" method="post" class="contact-form">
 								<div class="row">
 									<div class="col-md-6 col-md-offset-3">
-										<input type="text" name="name" placeholder="Name" required>
-										<input type="email" name="email" placeholder="Email" required>
-										<input type="text" name="subject" placeholder="Subject" required>
-										<textarea name="message" rows="7" placeholder="Your Message"
-											required></textarea>
-										<button class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>Drop Me a
-												Line</span></button>
+										{% csrf_token %}
+										<input type="text" name="name" placeholder="姓名" required>
+										<input type="email" name="email" placeholder="邮件" required>
+										<input type="text" name="subject" placeholder="主题" required>
+										<textarea name="message" rows="7" placeholder="信息" required></textarea>
+										<button
+											class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>留言</span></button>
 									</div>
 								</div> <!-- row -->
 							</form>

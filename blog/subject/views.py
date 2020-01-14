@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.generic.list import ListView
-from .models import Article, Category, Tag
+from .models import Article, Category, Tag, Contact
 from markdown import Markdown
 from django.db.models import F
 from django.utils.text import slugify
@@ -73,4 +73,14 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'subject/contact.html')
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+        Contact.objects.create(name=name, email=email,
+                               subject=subject, message=message)
+        message = "留言成功"
+        return render(request, 'subject/contact.html', context={"message": message})
+    else:
+        return render(request, 'subject/contact.html')
