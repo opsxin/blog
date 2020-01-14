@@ -7,7 +7,6 @@ from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.views.decorators.csrf import csrf_protect
 from pure_pagination.mixins import PaginationMixin
-from pure_pagination import Paginator
 
 # Create your views here.
 
@@ -23,7 +22,6 @@ def article(request, id):
     article = get_object_or_404(Article, pk=id)
     md = Markdown(extensions=['markdown.extensions.extra',
                               'markdown.extensions.codehilite',
-                              #   'markdown.extensions.toc',
                               TocExtension(slugify=slugify), ])
     article.content = md.convert(article.content)
     article.toc = md.toc
@@ -33,25 +31,24 @@ def article(request, id):
     return render(request, "subject/article.html", context={"article": article})
 
 
-def archive(request, year, month):
-    article_list = Article.objects.filter(modify_time__year=year,
-                                          modify_time__month=month
-                                          ).order_by('-modify_time')
-    return render(request, 'subject/index.html', context={'article_list': article_list})
+class ArchiveView(IndexView):
+    def get_queryset(self):
+        return super().get_queryset().filter(modify_time__year=self.kwargs.get("year"),
+                                             modify_time__month=self.kwargs.get(
+                                                 "month")
+                                             ).order_by('-modify_time')
 
 
-def category(request, id):
-    cate = get_object_or_404(Category, pk=id)
-    article_list = Article.objects.filter(
-        category=cate).order_by('-modify_time')
-    return render(request, 'subject/index.html', context={'article_list': article_list})
+class CategoryView(IndexView):
+    def get_queryset(self):
+        cate = get_object_or_404(Category, pk=self.kwargs.get("id"))
+        return super().get_queryset().filter(category=cate).order_by('-modify_time')
 
 
-def tag(request, id):
-    tag = get_object_or_404(Tag, pk=id)
-    article_list = Article.objects.filter(
-        tag=tag).order_by('-modify_time')
-    return render(request, 'subject/index.html', context={'article_list': article_list})
+class TagView(IndexView):
+    def get_queryset(self):
+        tag = get_object_or_404(Tag, pk=self.kwargs.get("id"))
+        return super().get_queryset().filter(tag=tag).order_by('-modify_time')
 
 
 @csrf_protect
@@ -63,15 +60,8 @@ def search(request):
     return render(request, 'subject/index.html', context={'article_list': article_list})
 
 
-def full(request):
-    try:
-        page = request.GET.get('page', 1)
-    except PageNotAnInteger:
-        page = 1
-    article_list = Article.objects.all()
-    p = Paginator(article_list, request=request, per_page=5)
-    article_list = p.page(page)
-    return render(request, 'subject/full.html', context={'article_list': article_list})
+class FullView(IndexView):
+    template_name = "subject/full.html"
 
 
 def about(request):

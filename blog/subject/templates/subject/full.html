@@ -68,7 +68,7 @@
 		<div class="container">
 			<div class="row">
 				<main class="col-md-12">
-					{% for article in article_list.object_list %}
+					{% for article in article_list %}
 					<article class="post post-{{ article.pk }}">
 						<header class="entry-header">
 							<h1 class="entry-title">
@@ -94,7 +94,9 @@
 					</article>
 					{% endfor %}
 
-					{{ article_list.render }}
+					{% if is_paginated %}
+					{{ page_obj.render }}
+					{% endif %}
 
 				</main>
 			</div>
