@@ -1,0 +1,29 @@
+{% extends "subject/base.html" %}
+{% block article %}
+<article class="post post-1">
+    <header class="entry-header">
+        <h1 class="entry-title">{{ article.title }}</h1>
+        <div class="entry-meta">
+            <span class="post-category"><a
+                    href="{% url 'subject:category' article.category_id %}">{{ article.category }}</a></span>
+            <span class="post-date"><time class="entry-date"
+                    datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time></span>
+            <!-- <span class="post-author"><a href="#">{{ article.author }}</a></span> -->
+            <!-- <span class="comments-link"><a href="#">4 评论</a></span> -->
+            <span class="views-count">{{ article.read_num }} 阅读</span>
+        </div>
+    </header>
+    <div class="entry-content clearfix">
+        {{ article.content | safe }}
+    </div>
+</article>
+{% endblock article %}
+
+{% block directory %}
+{% if article.toc %}
+<div class="widget widget-content">
+    <h3 class="widget-title">文章目录</h3>
+    {{ article.toc | safe }}
+</div>
+{% endif %}
+{% endblock directory %}
