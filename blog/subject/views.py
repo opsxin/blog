@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.generic.list import ListView
 from .models import Article, Category, Tag
 from markdown import Markdown
 from django.db.models import F
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 
@@ -50,6 +51,15 @@ def tag(request, id):
     return render(request, 'subject/index.html', context={'article_list': article_list})
 
 
+@csrf_protect
+def search(request):
+    if request.method == 'POST':
+        query_text = request.POST.get("query_text")
+        article_list = get_list_or_404(Article, title__icontains=query_text)
+
+    return render(request, 'subject/index.html', context={'article_list': article_list})
+
+
 def full(request):
     article_list = Article.objects.all()
     return render(request, 'subject/full.html', context={'article_list': article_list})
@@ -57,6 +67,7 @@ def full(request):
 
 def about(request):
     return render(request, 'subject/about.html')
+
 
 def contact(request):
     return render(request, 'subject/contact.html')
