@@ -26,3 +26,9 @@
 </article>
 {% endfor %}
 {% endblock article %}
+
+{% block paginate %}
+{% if is_paginated %}
+{{ page_obj.render }}
+{% endif %}
+{% endblock paginate %}

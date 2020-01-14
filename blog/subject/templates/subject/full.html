@@ -53,10 +53,10 @@
 						<a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
 						<div id="search-form" class="search-form">
 							<form role="search" method="POST" id="searchform" action="{% url 'subject:search' %}">
-                                {% csrf_token %}
-                                <input type="search" name="query_text" placeholder="搜索" required>
-                                <button type="submit"><span class="ion-ios-search-strong"></span></button>
-                            </form>
+								{% csrf_token %}
+								<input type="search" name="query_text" placeholder="搜索" required>
+								<button type="submit"><span class="ion-ios-search-strong"></span></button>
+							</form>
 						</div>
 					</div>
 				</div><!-- col-md-8 -->
@@ -68,7 +68,7 @@
 		<div class="container">
 			<div class="row">
 				<main class="col-md-12">
-					{% for article in article_list %}
+					{% for article in article_list.object_list %}
 					<article class="post post-{{ article.pk }}">
 						<header class="entry-header">
 							<h1 class="entry-title">
@@ -93,6 +93,8 @@
 						</div>
 					</article>
 					{% endfor %}
+
+					{{ article_list.render }}
 
 				</main>
 			</div>

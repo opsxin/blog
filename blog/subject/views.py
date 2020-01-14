@@ -6,14 +6,17 @@ from django.db.models import F
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.views.decorators.csrf import csrf_protect
+from pure_pagination.mixins import PaginationMixin
+from pure_pagination import Paginator
 
 # Create your views here.
 
 
-class IndexView(ListView):
+class IndexView(PaginationMixin, ListView):
     model = Article
     template_name = "subject/index.html"
     context_object_name = "article_list"
+    paginate_by = 5
 
 
 def article(request, id):
@@ -61,7 +64,13 @@ def search(request):
 
 
 def full(request):
+    try:
+        page = request.GET.get('page', 1)
+    except PageNotAnInteger:
+        page = 1
     article_list = Article.objects.all()
+    p = Paginator(article_list, request=request, per_page=5)
+    article_list = p.page(page)
     return render(request, 'subject/full.html', context={'article_list': article_list})
 
 
