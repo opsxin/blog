@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 from pure_pagination.mixins import PaginationMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -72,15 +73,19 @@ def about(request):
     return render(request, 'subject/about.html')
 
 
+@csrf_protect
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get("name")
         email = request.POST.get("email")
         subject = request.POST.get("subject")
         message = request.POST.get("message")
-        Contact.objects.create(name=name, email=email,
-                               subject=subject, message=message)
-        message = "留言成功"
-        return render(request, 'subject/contact.html', context={"message": message})
+        try:
+            Contact.objects.create(name=name, email=email,
+                                   subject=subject, message=message)
+            messages.info(request, "留言成功")
+        except:
+            messages.error(request, "留言失败")
+        return HttpResponseRedirect(reverse("subject:contact"))
     else:
         return render(request, 'subject/contact.html')
