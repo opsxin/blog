@@ -55,8 +55,9 @@ class Article(models.Model):
 class Contact(models.Model):
     name = models.CharField("姓名", max_length=10)
     email = models.EmailField("邮箱")
-    subject = models.CharField("主题", max_length=50)
+    # subject = models.CharField("主题", max_length=150)
     message = models.TextField("信息")
+    is_audit = models.BooleanField("审核", default=False)
     publish_time = models.DateTimeField("留言时间", auto_now_add=True)
 
     def __str__(self):
@@ -65,3 +66,4 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "留言"
         verbose_name_plural = verbose_name
+        ordering = ["-publish_time"]

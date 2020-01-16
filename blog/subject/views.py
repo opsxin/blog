@@ -78,14 +78,14 @@ def contact(request):
     if request.method == 'POST':
         name = request.POST.get("name")
         email = request.POST.get("email")
-        subject = request.POST.get("subject")
+        # subject = request.POST.get("subject")
         message = request.POST.get("message")
         try:
-            Contact.objects.create(name=name, email=email,
-                                   subject=subject, message=message)
-            messages.info(request, "留言成功")
+            Contact.objects.create(name=name, email=email, message=message)
+            messages.info(request, "留言成功，待审核")
         except:
             messages.error(request, "留言失败")
         return HttpResponseRedirect(reverse("subject:contact"))
     else:
-        return render(request, 'subject/contact.html')
+        contacts = Contact.objects.filter(is_audit="True")
+        return render(request, 'subject/contact.html', {"contacts": contacts})

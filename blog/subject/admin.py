@@ -18,7 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ["name", "email", "subject", "publish_time"]
+    list_display = ["name", "email", "is_audit", "publish_time"]
     date_hierarchy = "publish_time"
 
 

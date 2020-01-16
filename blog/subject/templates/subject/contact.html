@@ -75,7 +75,7 @@
 							{% endfor %}
 					</ul>
 					{% endif %}
-					<h1 class="page-title">联系</h1>
+					<h1 class="page-title">留言</h1>
 					<article class="post">
 						<div class="entry-content clearfix">
 							<form action="#" method="post" class="contact-form">
@@ -84,7 +84,7 @@
 										{% csrf_token %}
 										<input type="text" name="name" placeholder="姓名" required>
 										<input type="email" name="email" placeholder="邮件" required>
-										<input type="text" name="subject" placeholder="主题" required>
+										<!-- <input type="text" name="subject" placeholder="信息" required> -->
 										<textarea name="message" rows="7" placeholder="信息" required></textarea>
 										<button
 											class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>留言</span></button>
@@ -93,6 +93,23 @@
 							</form>
 						</div>
 					</article>
+					<section class="comment-area" id="comment-area">
+						<hr>
+						<div class="comment-list-panel">
+							<h3>留言列表，共 <span>{{ contacts | length }}</span> 条留言</h3>
+							<ul class="comment-list list-unstyled">
+								{% for contact in contacts %}
+								<li class="comment-item">
+									<span class="nickname">{{ contact.name }}</span>
+									<time class="submit-date" datetime="2020-01-01T00:00:00+00:00">{{ contact.publish_time }}</time>
+									<div class="text">
+										{{ contact.message }}
+									</div>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</section>
 				</main>
 			</div>
 		</div>
@@ -114,7 +131,7 @@
 			<ul>
 				<li class="cl-effect-11"><a href="{% url 'subject:index' %}" data-hover="首页">首页</a></li>
 				<li class="cl-effect-11"><a href="{% url 'subject:full' %}" data-hover="博客">博客</a></li>
-				<li class="cl-effect-11"><a href="{% url 'subject:about' %}" data-hover="关于">关于</a></li>
+				<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}" data-hover="关于">关于</a></li> -->
 				<li class="cl-effect-11"><a href="{% url 'subject:contact' %}" data-hover="联系">联系</a>
 				</li>
 			</ul>
