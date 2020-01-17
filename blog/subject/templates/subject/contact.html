@@ -16,10 +16,10 @@
 	<link rel="stylesheet" href="{% static 'subject/css/custom.css' %}">
 
 	<!-- js -->
-	<script src="{% static 'subject/js/jquery-2.1.3.min.js' %}"></script>
-	<script src="{% static 'subject/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'subject/js/pace.min.js' %}"></script>
-	<script src="{% static 'subject/js/modernizr.custom.js' %}"></script>
+	<script type="text/javascript" src="{% static 'subject/js/jquery-2.1.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'subject/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'subject/js/pace.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'subject/js/modernizr.custom.js' %}"></script>
 </head>
 
 <body id="page">
@@ -102,8 +102,8 @@
 								<li class="comment-item">
 									<span class="nickname">{{ contact.name }}</span>
 									<time class="submit-date" datetime="2020-01-01T00:00:00+00:00">{{ contact.publish_time }}</time>
-									<div class="text">
-										{{ contact.message }}
+									<div>
+										<p class="text-left">{{ contact.message }}</p>
 									</div>
 								</li>
 								{% endfor %}
@@ -138,7 +138,7 @@
 		</nav>
 	</div>
 
-	<script src="{% static 'subject/js/script.js' %}"></script>
+	<script type="text/javascript" src="{% static 'subject/js/script.js' %}"></script>
 
 </body>
 
