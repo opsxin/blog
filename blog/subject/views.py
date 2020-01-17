@@ -10,6 +10,7 @@ from pure_pagination.mixins import PaginationMixin
 # from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.utils.html import strip_tags
 
 # Create your views here.
 
@@ -26,6 +27,7 @@ def article(request, id):
     md = Markdown(extensions=['markdown.extensions.extra',
                               'markdown.extensions.codehilite',
                               TocExtension(slugify=slugify), ])
+    article.content = strip_tags(article.content)
     article.content = md.convert(article.content)
     article.toc = md.toc
 
@@ -93,5 +95,6 @@ def contact(request):
                                   'markdown.extensions.codehilite',
                                   'markdown.extensions.toc', ])
         for contact in contacts:
+            contact.message = strip_tags(contact.message)
             contact.message = md.convert(contact.message)
         return render(request, 'subject/contact.html', {"contacts": contacts})
