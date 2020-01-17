@@ -10,6 +10,7 @@ from pure_pagination.mixins import PaginationMixin
 # from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.utils.html import escape
 
 # Create your views here.
 
@@ -80,7 +81,7 @@ def contact(request):
         name = request.POST.get("name")
         email = request.POST.get("email")
         # subject = request.POST.get("subject")
-        message = request.POST.get("message")
+        message = escape(request.POST.get("message"))
         try:
             Contact.objects.create(name=name, email=email, message=message)
             messages.info(request, "留言成功，待审核")
