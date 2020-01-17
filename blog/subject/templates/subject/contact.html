@@ -10,8 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- css -->
-	<!-- <link rel="stylesheet" href="{% static 'subject/css/bootstrap.min.css' %}"> -->
-	<link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="{% static 'subject/css/custom.css' %}">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.15.8/styles/github.min.css">
@@ -23,7 +22,7 @@
 
 </head>
 
-<body id="page">
+<body>
 	<div class="container">
 		<header id="site-header">
 			<div class="row">
@@ -132,10 +131,10 @@
 		<button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
 		<nav>
 			<ul>
-				<li class="cl-effect-11"><a href="{% url 'subject:index' %}" data-hover="首页">首页</a></li>
-				<li class="cl-effect-11"><a href="{% url 'subject:full' %}" data-hover="博客">博客</a></li>
-				<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}" data-hover="关于">关于</a></li> -->
-				<li class="cl-effect-11"><a href="{% url 'subject:contact' %}" data-hover="留言">留言</a>
+				<li class="cl-effect-11"><a href="{% url 'subject:index' %}">首页</a></li>
+				<li class="cl-effect-11"><a href="{% url 'subject:full' %}">博客</a></li>
+				<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}">关于</a></li> -->
+				<li class="cl-effect-11"><a href="{% url 'subject:contact' %}">留言</a>
 				</li>
 			</ul>
 		</nav>

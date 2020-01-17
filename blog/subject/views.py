@@ -1,13 +1,13 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.generic.list import ListView
 from .models import Article, Category, Tag, Contact
 from markdown import Markdown
-from django.db.models import F
+from django.db.models import F, Q
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.views.decorators.csrf import csrf_protect
 from pure_pagination.mixins import PaginationMixin
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 
@@ -58,9 +58,10 @@ class TagView(IndexView):
 def search(request):
     if request.method == 'POST':
         query_text = request.POST.get("query_text")
-        article_list = get_list_or_404(Article, title__icontains=query_text)
+        article_list = get_list_or_404(Article, Q(
+            title__icontains=query_text) | Q(content__icontains=query_text))
     else:
-        return HttpResponseRedirect(reverse("subject:index"))
+        return redirect(reverse("subject:index"))
 
     return render(request, 'subject/index.html', context={'article_list': article_list})
 
@@ -85,7 +86,7 @@ def contact(request):
             messages.info(request, "留言成功，待审核")
         except:
             messages.error(request, "留言失败")
-        return HttpResponseRedirect(reverse("subject:contact"))
+        return redirect(reverse("subject:contact"))
     else:
         contacts = Contact.objects.filter(is_audit="True")
         md = Markdown(extensions=['markdown.extensions.extra',
