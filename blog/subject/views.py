@@ -88,4 +88,9 @@ def contact(request):
         return HttpResponseRedirect(reverse("subject:contact"))
     else:
         contacts = Contact.objects.filter(is_audit="True")
+        md = Markdown(extensions=['markdown.extensions.extra',
+                                  'markdown.extensions.codehilite',
+                                  'markdown.extensions.toc', ])
+        for contact in contacts:
+            contact.message = md.convert(contact.message)
         return render(request, 'subject/contact.html', {"contacts": contacts})
