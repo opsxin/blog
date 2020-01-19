@@ -5,8 +5,8 @@
 
 <head>
     {% block title %}
-	<title>opsxin</title>
-	{% endblock title %}
+    <title>opsxin</title>
+    {% endblock title %}
 
     <!-- meta -->
     <meta charset="UTF-8">
@@ -23,9 +23,9 @@
 
     <!-- js -->
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{% static 'subject/js/modernizr.custom.js' %}"></script>
-    
+
 </head>
 
 <body>
@@ -48,8 +48,6 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="cl-effect-11"><a href="{% url 'subject:index' %}" data-hover="首页">首页</a></li>
-                                <!-- <li class="cl-effect-11"><a href="{% url 'subject:full' %}" data-hover="博客">博客</a></li> -->
-                                <!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}" data-hover="关于">关于</a></li> -->
                                 <li class="cl-effect-11"><a href="{% url 'subject:contact' %}" data-hover="留言">留言</a>
                                 </li>
                             </ul>
@@ -108,8 +106,6 @@
         <nav>
             <ul>
                 <li class="cl-effect-11"><a href="{% url 'subject:index' %}">首页</a></li class="cl-effect-11">
-                <!-- <li class="cl-effect-11"><a href="{% url 'subject:full' %}">博客</a></li class="cl-effect-11"> -->
-                <!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}">关于</a></li> -->
                 <li class="cl-effect-11"><a href="{% url 'subject:contact' %}">留言</a></li class="cl-effect-11">
             </ul>
         </nav>
@@ -117,7 +113,8 @@
 
     <script type="text/javascript" src="{% static 'subject/js/script.js' %}"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
         hljs.initLineNumbersOnLoad();

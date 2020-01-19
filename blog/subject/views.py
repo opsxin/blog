@@ -66,12 +66,12 @@ def search(request):
     return render(request, 'subject/index.html', context={'article_list': article_list})
 
 
-class FullView(IndexView):
-    template_name = "subject/full.html"
+# class FullView(IndexView):
+#     template_name = "subject/full.html"
 
 
-def about(request):
-    return render(request, 'subject/about.html')
+# def about(request):
+#     return render(request, 'subject/about.html')
 
 
 @csrf_protect

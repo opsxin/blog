@@ -45,8 +45,6 @@
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="cl-effect-11"><a href="{% url 'subject:index' %}" data-hover="首页">首页</a></li>
-								<!-- <li class="cl-effect-11"><a href="{% url 'subject:full' %}" data-hover="博客">博客</a></li> -->
-								<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}" data-hover="关于">关于</a></li> -->
 								<li class="cl-effect-11"><a href="{% url 'subject:contact' %}" data-hover="留言">留言</a>
 								</li>
 							</ul>
@@ -88,7 +86,6 @@
 									{% csrf_token %}
 									<input type="text" name="name" placeholder="姓名" required>
 									<input type="email" name="email" placeholder="邮件" required>
-									<!-- <input type="text" name="subject" placeholder="信息" required> -->
 									<textarea name="message" rows="7" placeholder="信息(支持 Markdown)" required></textarea>
 									<button class="btn-send btn-5 btn-5b ion-ios-paperplane"><span>留言</span></button>
 								</div>
@@ -135,8 +132,6 @@
 		<nav>
 			<ul>
 				<li class="cl-effect-11"><a href="{% url 'subject:index' %}">首页</a></li>
-				<!-- <li class="cl-effect-11"><a href="{% url 'subject:full' %}">博客</a></li> -->
-				<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}">关于</a></li> -->
 				<li class="cl-effect-11"><a href="{% url 'subject:contact' %}">留言</a>
 				</li>
 			</ul>

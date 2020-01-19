@@ -8,8 +8,8 @@
 	<!-- meta -->
 	<meta charset="UTF-8">
 	<meta name="author" content="opsxin">
-    <meta name="description" content="opsxin, 记录博客">
-    <meta name="keywoeds" content="opsxin Python Linux Shell">
+	<meta name="description" content="opsxin, 记录博客">
+	<meta name="keywoeds" content="opsxin Python Linux Shell">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- css -->
@@ -43,8 +43,6 @@
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="cl-effect-11"><a href="{% url 'subject:index' %}" data-hover="首页">首页</a></li>
-								<!-- <li class="cl-effect-11"><a href="{% url 'subject:full' %}" data-hover="博客">博客</a></li> -->
-								<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}" data-hover="关于">关于</a></li> -->
 								<li class="cl-effect-11"><a href="{% url 'subject:contact' %}" data-hover="留言">留言</a>
 								</li>
 							</ul>
@@ -80,8 +78,6 @@
 										href="{% url 'subject:category' article.category_id %}">{{ article.category }}</a></span>
 								<span class="post-date"><time class="entry-date"
 										datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time></span>
-								<!-- <span class="post-author"><a href="#">{{ article.author }}</a></span> -->
-								<!-- <span class="comments-link"><a href="#">4 评论</a></span> -->
 								<span class="views-count">{{ article.read_num }} 阅读</span>
 							</div>
 						</header>
@@ -119,8 +115,6 @@
 		<nav>
 			<ul>
 				<li class="cl-effect-11"><a href="{% url 'subject:index' %}">首页</a></li class="cl-effect-11">
-				<!-- <li class="cl-effect-11"><a href="{% url 'subject:full' %}">博客</a></li> -->
-				<!-- <li class="cl-effect-11"><a href="{% url 'subject:about' %}">关于</a></li> -->
 				<li class="cl-effect-11"><a href="{% url 'subject:contact' %}">留言</a></li class="cl-effect-11">
 			</ul>
 		</nav>
