@@ -3,23 +3,26 @@
 <html>
 
 <head>
-	<title>opsxin</title>
+	<title>About Me</title>
 
 	<!-- meta -->
 	<meta charset="UTF-8">
+	<meta name="author" content="opsxin">
+	<meta name="description" content="opsxin, 记录博客">
+	<meta name="keywoeds" content="opsxin Python Linux Shell">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- css -->
-	<link rel="stylesheet" href="{% static 'subject/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="{% static 'subject/css/pace.css' %}">
 	<link rel="stylesheet" href="{% static 'subject/css/custom.css' %}">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.15.8/styles/github.min.css">
 
 	<!-- js -->
-	<script type="text/javascript" src="{% static 'subject/js/jquery-2.1.3.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'subject/js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'subject/js/pace.min.js' %}"></script>
+	<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{% static 'subject/js/modernizr.custom.js' %}"></script>
+
 </head>
 
 <body id="page">
@@ -42,8 +45,8 @@
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="{% url 'subject:index' %}">首页</a></li>
-								<li><a href="{% url 'subject:full' %}">博客</a></li>
-								<li><a href="{% url 'subject:about' %}">关于</a></li>
+								<!-- <li><a href="{% url 'subject:full' %}">博客</a></li> -->
+								<!-- <li><a href="{% url 'subject:about' %}">关于</a></li> -->
 								<li><a href="{% url 'subject:contact' %}">留言</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
@@ -71,12 +74,8 @@
 					<article class="post">
 						<div class="entry-content clearfix">
 							<figure class="img-responsive-center">
-								<img class="img-responsive" src="img/me.jpg" alt="Developer Image">
+								<img class="img-responsive" src="{% static 'subject/img/me.jpg' %}" alt="Developer Image">
 							</figure>
-							<p>Responsive web design offers us a way forward, finally allowing us to design for the ebb
-								and flow of things. There are many variations of passages of Lorem Ipsum available, but
-								the majority have suffered alteration in some form, by injected humour, or randomised
-								words which don’t look even slightly.</p>
 							<p>Responsive web design offers us a way forward, finally allowing us to design for the ebb
 								and flow of things. There are many variations of passages of Lorem Ipsum available, but
 								the majority have suffered alteration in some form, by injected humour, or randomised
@@ -86,8 +85,8 @@
 							<ul class="social">
 								<li class="facebook"><a href="#"><span class="ion-social-facebook"></span></a></li>
 								<li class="twitter"><a href="#"><span class="ion-social-twitter"></span></a></li>
-								<li class="google-plus"><a href="#"><span class="ion-social-googleplus"></span></a></li>
-								<li class="tumblr"><a href="#"><span class="ion-social-tumblr"></span></a></li>
+								<!-- <li class="google-plus"><a href="#"><span class="ion-social-googleplus"></span></a></li>
+								<li class="tumblr"><a href="#"><span class="ion-social-tumblr"></span></a></li> -->
 							</ul>
 						</div>
 					</article>
@@ -111,8 +110,8 @@
 		<nav>
 			<ul>
 				<li><a href="{% url 'subject:index' %}">首页</a></li>
-				<li><a href="{% url 'subject:full' %}">博客</a></li>
-				<li><a href="{% url 'subject:about' %}">关于</a></li>
+				<!-- <li><a href="{% url 'subject:full' %}">博客</a></li>
+				<li><a href="{% url 'subject:about' %}">关于</a></li> -->
 				<li><a href="{% url 'subject:contact' %}">留言</a></li>
 			</ul>
 		</nav>
