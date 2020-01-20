@@ -150,3 +150,8 @@ if ( typeof define === 'function' && define.amd ) {
     triggerBttn.addEventListener( 'click', toggleOverlay );
     closeBttn.addEventListener( 'click', toggleOverlay );
 })();
+
+/**
+ * 表格添加边框
+ */
+$("table").addClass("table table-bordered table-striped");
