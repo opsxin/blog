@@ -18,7 +18,8 @@
  * 11.0 - Media Query
  * 12.0 - Comment
  * 13.0 - Pagination
- # 14.0 - Code Highlight
+ * 14.0 - Code Highlight
+ * 15.0 - href color
  */
 
 /**
@@ -944,4 +945,28 @@ img {
 .hljs-ln .hljs-ln-code {
     padding-left: 10px;
     white-space: pre;
+}
+
+/**
+* 15.0 - href color
+*/
+a:link {
+    color: #27a7eb; /*未访问的链接颜色*/
+}
+
+a:visited {
+    color: #6a0099; /*已访问的链接颜色*/
+}
+
+a:hover {
+    color: #27a7eb; /*鼠标移动到链接的颜色*/
+    text-decoration: underline;
+}
+
+a:active {
+    color: red; /*鼠标点击时的颜色*/
+}
+
+a {
+    text-decoration: none; /*去掉下划线*/
 }
