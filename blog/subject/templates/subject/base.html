@@ -24,7 +24,7 @@
     <!-- js -->
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{% static 'subject/js/modernizr.custom.js' %}"></script>
+    <script src="https://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>
 
 </head>
 
@@ -109,6 +109,11 @@
                 <li class="cl-effect-11"><a href="{% url 'subject:contact' %}">留言</a></li class="cl-effect-11">
             </ul>
         </nav>
+    </div>
+
+    <!-- Back to top -->
+    <div id="box" class="box visible-md-block visible-lg-block">
+        <div class="box-in"></div>
     </div>
 
     <script type="text/javascript" src="{% static 'subject/js/script.js' %}"></script>
