@@ -10,6 +10,7 @@ from pure_pagination.mixins import PaginationMixin
 # from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -29,9 +30,19 @@ def article(request, id):
     article.content = md.convert(article.content)
     article.toc = md.toc
 
+    try:
+        pre_article = Article.objects.get(pk=id-1)
+    except ObjectDoesNotExist:
+        pre_article = {"id": 0, "title": "没有上一篇了"}
+
+    try:
+        next_article = Article.objects.get(pk=id+1)
+    except ObjectDoesNotExist:
+        next_article = {"id": 0, "title": "没有下一篇了"}
+
     Article.objects.filter(pk=id).update(read_num=F('read_num') + 1)
 
-    return render(request, "subject/article.html", context={"article": article})
+    return render(request, "subject/article.html", context={"article": article, "pre_article": pre_article,  "next_article": next_article})
 
 
 class ArchiveView(IndexView):

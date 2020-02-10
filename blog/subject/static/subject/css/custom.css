@@ -21,6 +21,7 @@
  * 14.0 - Code Highlight
  * 15.0 - href color
  * 16.0 - back to top
+ * 17.0 - article jump
  */
 
 /**
@@ -812,6 +813,19 @@ img {
 }
 
 /**
+ * 17.0 Article Jump
+ */
+.pre_article {
+    float: left;
+    font-size: 20px;
+}
+
+.next_article {
+    float: right; 
+    font-size: 20px;
+}
+
+/**
  * 14.0 Code Highlight
  */
 .codehilite {
@@ -897,7 +911,7 @@ a {
     transform: translate(-50%,-50%);
     content:'回到顶部';
     width: 40px;
-    color:#790e7a;
+    color:#ffffff;
     font-weight:bold;
 }    
 .box-in{

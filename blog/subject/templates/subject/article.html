@@ -22,6 +22,22 @@
 </article>
 {% endblock article %}
 
+{% block jump_article %}
+<div>
+    <br>
+    {% if pre_article.id == 0 %}
+    <span class="disabled pre_article">&larr; {{ pre_article.title }}</span>
+    {% else %}
+    <a href="{% url 'subject:article' pre_article.id %}" class="pre_article">&larr; {{ pre_article.title }}</a>
+    {% endif %}
+    {% if next_article.id == 0 %}
+    <span class="disabled next_article">{{ next_article.title }} &rarr;</span>
+    {% else %}
+    <a href="{% url 'subject:article' next_article.id %}" class="next_article">{{ next_article.title }} &rarr;</a>
+    {% endif %}
+</div>
+{% endblock jump_article %}
+
 {% block directory %}
 {% if article.toc %}
 <div class="widget widget-content">
