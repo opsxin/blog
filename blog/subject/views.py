@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.generic.list import ListView
 from .models import Article, Category, Tag, Contact
@@ -27,6 +28,8 @@ def article(request, id):
     md = Markdown(extensions=['markdown.extensions.extra',
                               'markdown.extensions.codehilite',
                               TocExtension(slugify=slugify), ])
+    article.content = re.sub(
+        r"```(\w+)\s+([^`]+)```", r'<pre><code class="\1">\2</code></pre>', article.content)
     article.content = md.convert(article.content)
     article.toc = md.toc
 
