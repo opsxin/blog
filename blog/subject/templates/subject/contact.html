@@ -17,10 +17,10 @@
 	<link rel="stylesheet" href="{% static 'subject/css/custom.min.css' %}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/github.min.css">
 
-    <!-- js -->
+	<!-- js -->
 	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="https://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>
 
 </head>
 
@@ -119,7 +119,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<p class="copyright">&copy; 2020 Hsin</p>
+					<p class="copyright">&copy; 2020 Hsin - <a href="{% url 'subject:feed' %}" title="Feed 订阅"
+							target="_blank">RSS 订阅</a></p>
 				</div>
 			</div>
 		</div>
@@ -143,13 +144,13 @@
 	</div>
 
 	<script type="text/javascript" src="{% static 'subject/js/script.js' %}"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-        hljs.initLineNumbersOnLoad();
-    </script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad();
+		hljs.initLineNumbersOnLoad();
+	</script>
 
 </body>
 
