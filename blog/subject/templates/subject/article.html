@@ -21,19 +21,20 @@
         {% if article.tags %}
         <hr>
         {% for tag in article.tags %}
-        <ion-icon name="pricetag-outline" size="small"></ion-icon> <a href="{% url 'subject:tag' tag.id %}">{{ tag.name }}</a>
+        <ion-icon name="pricetag-outline" size="small"></ion-icon> <a
+            href="{% url 'subject:tag' tag.id %}">{{ tag.name }}</a>
         {% endfor %}
         {% endif %}
         <hr>
         {% if pre_article.id == 0 %}
-        <span class="disabled pre_article"><ion-icon name="arrow-back-outline" size="small"></ion-icon> {{ pre_article.title }}</span>
+        <span class="disabled pre_article">&larr; {{ pre_article.title }}</span>
         {% else %}
-        <a href="{% url 'subject:article' pre_article.id %}" class="pre_article"><ion-icon name="arrow-back-outline" size="small"></ion-icon> {{ pre_article.title }}</a>
+        <a href="{% url 'subject:article' pre_article.id %}" class="pre_article">&larr; {{ pre_article.title }}</a>
         {% endif %}
         {% if next_article.id == 0 %}
-        <span class="disabled next_article">{{ next_article.title }} <ion-icon name="arrow-forward-outline" size="small"></ion-icon></span>
+        <span class="disabled next_article">{{ next_article.title }} &rarr;</span>
         {% else %}
-        <a href="{% url 'subject:article' next_article.id %}" class="next_article">{{ next_article.title }} <ion-icon name="arrow-forward-outline" size="small"></ion-icon></a>
+        <a href="{% url 'subject:article' next_article.id %}" class="next_article">{{ next_article.title }} &rarr;</a>
         {% endif %}
     </div>
 </article>

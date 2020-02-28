@@ -8,7 +8,6 @@ from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.views.decorators.csrf import csrf_protect
 from pure_pagination.mixins import PaginationMixin
-# from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -33,7 +32,8 @@ def article(request, id):
     article.content = md.convert(article.content)
     article.toc = md.toc
 
-    article.tags = [{"name": tag.name, "id": tag.id} for tag in article.tag.all()]
+    article.tags = [{"name": tag.name, "id": tag.id}
+                    for tag in article.tag.all()]
 
     try:
         pre_article = Article.objects.get(pk=id-1)
@@ -76,14 +76,6 @@ def search(request):
         title__icontains=query_text) | Q(content__icontains=query_text))
 
     return render(request, 'subject/index.html', context={'article_list': article_list})
-
-
-# class FullView(IndexView):
-#     template_name = "subject/full.html"
-
-
-# def about(request):
-#     return render(request, 'subject/about.html')
 
 
 @csrf_protect

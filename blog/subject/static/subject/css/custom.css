@@ -47,20 +47,10 @@ h6 {
 
 b {
     font-weight: 400;
+    font-size: 36px;
+    color: black;
 }
 
-a {
-    color: #333;
-}
-
-a:hover, a:focus {
-    text-decoration: none;
-    color: #000;
-}
-
-::selection {
-    background-color: #eee;
-}
 
 body {
     color: #444;
@@ -74,10 +64,10 @@ p {
     letter-spacing: 0.01em;
 }
 
-#single p,
+/* #single p,
 #page p {
     margin-bottom: 25px;
-}
+} */
 
 .page-title {
     text-align: center;
@@ -87,46 +77,46 @@ p {
     margin-bottom: 30px;
 }
 
-figure {
+/* figure {
     margin-bottom: 25px;
-}
+} */
 
 img {
     max-width: 100%;
 }
 
-.img-responsive-center img {
+/* .img-responsive-center img {
     margin: 0 auto;
 }
 
 .height-40px {
     margin-bottom: 40px;
-}
+} */
 
 /**
  * 3.0 - Site Header
  */
 
-#site-header {
+/* #site-header {
     background-color: #FFF;
     padding: 25px 20px;
     margin-bottom: 40px;
     border-bottom: 1px solid #e7e7e7;
-}
+} */
 
-.copyrights {
+/* .copyrights {
     text-indent: -9999px;
     height: 0;
     line-height: 0;
     font-size: 0;
     overflow: hidden;
-}
+} */
 
 /**
  * 3.1 - Logo
  */
 
-.logo h1 a {
+/* .logo h1 a {
     color: #000;
 }
 
@@ -139,13 +129,13 @@ img {
     margin: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-}
+} */
 
 /**
  * 3.2 - Main Navigation
  */
 
-.main-nav {
+/* .main-nav {
     margin-top: 11px;
     max-width: 95%;
 }
@@ -176,13 +166,13 @@ img {
 .navbar-toggle span {
     font-size: 2em;
     color: #000;
-}
+} */
 
 /**
  * 3.2.1 - Main Nav CSS 3 Hover Effect
  */
 
-.cl-effect-11 a {
+/* .cl-effect-11 a {
     padding: 10px 0;
     color: #0972b4;
     text-shadow: none;
@@ -207,7 +197,7 @@ img {
 .cl-effect-11 a:hover::before,
 .cl-effect-11 a:focus::before {
     max-width: 100%;
-}
+} */
 
 /**
  * 4.0 - Home/Blog
@@ -355,7 +345,7 @@ img {
 .widget-recent-posts ul {
     padding: 0;
     margin: 0;
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 .widget-recent-posts ul li {
@@ -365,7 +355,7 @@ img {
     margin-bottom: 10px;
 }
 
-.widget-recent-posts ul li::before {
+/* .widget-recent-posts ul li::before {
     content: '\f3d3';
     font-family: "Ionicons";
     position: absolute;
@@ -373,12 +363,12 @@ img {
     top: 3px;
     font-size: 16px;
     color: #000;
-}
+} */
 
 .widget-archives ul {
     padding: 0;
     margin: 0;
-    padding-left: 25px;
+    padding-left: 0px;
 }
 
 .widget-archives ul li {
@@ -388,7 +378,7 @@ img {
     margin-bottom: 10px;
 }
 
-.widget-archives ul li::before {
+/* .widget-archives ul li::before {
     content: '\f3f3';
     font-family: "Ionicons";
     position: absolute;
@@ -396,12 +386,12 @@ img {
     top: 1px;
     font-size: 16px;
     color: #000;
-}
+} */
 
 .widget-category ul {
     padding: 0;
     margin: 0;
-    padding-left: 25px;
+    padding-left: 0px;
 }
 
 .widget-category ul li {
@@ -411,7 +401,7 @@ img {
     margin-bottom: 10px;
 }
 
-.widget-category ul li::before {
+/* .widget-category ul li::before {
     content: '\f3fe';
     font-family: "Ionicons";
     position: absolute;
@@ -419,7 +409,7 @@ img {
     top: 1px;
     font-size: 18px;
     color: #000;
-}
+} */
 
 .widget-tag-cloud ul {
     padding: 0;
@@ -445,14 +435,14 @@ img {
     margin-bottom: 10px;
 }
 
-.rss {
+/* .rss {
     font-size: 21px;
     margin-top: 30px;
 }
 
 .rss a {
     color: #444;
-}
+} */
 
 /**
  * 6.0 - Footer
@@ -474,8 +464,33 @@ img {
 /**
  * 7.0 - Header Search Bar
  */
+.navbar {
+    border: 0;
+}
 
-#header-search-box {
+ .search_form{ 
+    font-size:0;
+    border: 0;
+}
+
+.search_form .search_input{
+   border: 1px solid #DBDBDB;
+   border-radius: 2px 0 0 2px;
+   height: 30px;
+   width: 180px;
+   line-height: 30px;
+   padding: 0 10px;
+   box-sizing: border-box;
+}
+.search_form .search_btn{
+   border: 1px solid #DBDBDB;
+   border-radius: 0 2px 2px 0;
+   height: 30px;
+   width: 20px;
+   color: gray
+}
+
+/* #header-search-box {
     position: absolute;
     right: 38px;
     top: 8px;
@@ -528,13 +543,13 @@ img {
     line-height: 0;
     position: relative;
     top: -6px;
-}
+} */
 
 /**
  * 8.0 - Mobile Menu
  */
 
-.overlay {
+/* .overlay {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -634,7 +649,7 @@ img {
 .overlay-hugeinc.close nav ul {
     -webkit-transform: translateY(25%) rotateX(-35deg);
     transform: translateY(25%) rotateX(-35deg);
-}
+} */
 
 /**
  * 10.0 - Contact Form
@@ -675,7 +690,7 @@ img {
     letter-spacing: 1px;
     position: relative;
     transition: all 0.3s;
-}
+} 
 
 .btn-5 {
     color: #666;
@@ -688,7 +703,7 @@ img {
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
+/*
 .btn-5 span {
     display: inline-block;
     width: 100%;
@@ -730,7 +745,7 @@ img {
 
 .btn-5b:hover:before {
     left: 0;
-}
+} */
 
 /**
  * 11.0 - Media Query
@@ -797,10 +812,10 @@ img {
 /**
  * 13.0 - Pagination
  */
-.pagination-simple {
+/* .pagination-simple {
     padding-left: 30px;
     font-size: 16px;
-}
+} */
 
 .pagination ul {
     list-style: none;

@@ -1,9 +1,13 @@
 <div class="text-center pagination" style="width: 100%">
     <ul class="pagination">
         {% if page_obj.has_previous %}
-        <li><a href="?{{ page_obj.previous_page_number.querystring }}" class="previous">&larr; 上页</a></li>
+        <li><a href="?{{ page_obj.previous_page_number.querystring }}" class="previous">
+                &larr; 上页
+            </a></li>
         {% else %}
-        <li><span class="disabled previous">&larr; 上页</span></li>
+        <li><span class="disabled previous">
+                &larr; 上页
+            </span></li>
         {% endif %}
         {% for page in page_obj.pages %}
         {% if page %}

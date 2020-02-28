@@ -3,10 +3,13 @@
     <ul>
         {% for article in recent_article_list %}
         <li>
-            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+            <ion-icon name="document-text-outline" size="small"></ion-icon> <a
+                href="{{ article.get_absolute_url }}">{{ article.title }}</a>
         </li>
         {% empty %}
-        暂无文章！
+        <li>
+            <ion-icon name="document-text-outline" size="small"></ion-icon> 暂无文章！
+        </li>
         {% endfor %}
     </ul>
 </div>

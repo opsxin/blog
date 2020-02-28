@@ -3,11 +3,14 @@
     <ul>
         {% for category in category_list %}
         <li>
-            <a href="{% url 'subject:category' category.pk %}">{{ category.name }} <span
+            <ion-icon name="document-attach-outline" size="small"></ion-icon> <a
+                href="{% url 'subject:category' category.pk %}">{{ category.name }} <span
                     class="post-count">({{ category.num_article }})</span></a>
         </li>
         {% empty %}
-        暂无分类！
+        <li>
+            <ion-icon name="document-attach-outline" size="small"></ion-icon> 暂无分类！
+        </li>
         {% endfor %}
     </ul>
 </div>
