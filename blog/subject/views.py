@@ -33,6 +33,8 @@ def article(request, id):
     article.content = md.convert(article.content)
     article.toc = md.toc
 
+    article.tags = [{"name": tag.name, "id": tag.id} for tag in article.tag.all()]
+
     try:
         pre_article = Article.objects.get(pk=id-1)
     except ObjectDoesNotExist:
