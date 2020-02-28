@@ -55,8 +55,7 @@
                     <div id="header-search-box">
                         <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
                         <div id="search-form" class="search-form">
-                            <form role="search" method="POST" id="searchform" action="{% url 'subject:search' %}">
-                                {% csrf_token %}
+                            <form role="search" method="GET" id="searchform" action="{% url 'subject:search' %}">
                                 <input type="search" name="query_text" placeholder="搜索" required>
                                 <button type="submit"><span class="ion-ios-search-strong"></span></button>
                             </form>

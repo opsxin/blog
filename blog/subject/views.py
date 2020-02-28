@@ -68,14 +68,10 @@ class TagView(IndexView):
         return super().get_queryset().filter(tag=tag).order_by('-modify_time')
 
 
-@csrf_protect
 def search(request):
-    if request.method == 'POST':
-        query_text = request.POST.get("query_text")
-        article_list = get_list_or_404(Article, Q(
-            title__icontains=query_text) | Q(content__icontains=query_text))
-    else:
-        return redirect(reverse("subject:index"))
+    query_text = request.GET.get("query_text")
+    article_list = get_list_or_404(Article, Q(
+        title__icontains=query_text) | Q(content__icontains=query_text))
 
     return render(request, 'subject/index.html', context={'article_list': article_list})
 
