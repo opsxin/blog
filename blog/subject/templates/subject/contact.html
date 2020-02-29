@@ -1,125 +1,57 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
+{% extends "subject/base.html" %}
 
-<head>
-	<title>给我留言</title>
+{% block title %}
+<title>给我留言</title>
+{% endblock title %}
 
-	<!-- meta -->
-	<meta charset="UTF-8">
-	<meta name="author" content="opsxin">
-	<meta name="description" content="opsxin, 记录博客">
-	<meta name="keywords" content="opsxin Python Linux Shell">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{% static 'subject/css/custom.min.css' %}">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/github.min.css">
-
-	<!-- js -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
+{% block content %}
+<div class="content-body">
 	<div class="container">
-		<nav class="navbar navbar-default" role="navigation" style="background-color: white;">
-			<div class="container-fluid" style="padding-top: 20px">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="{% url 'subject:index' %}"><b>opsxin</b></a>
-				</div>
-				<div>
-					<form class="navbar-form navbar-right search_form" role="search" method="GET"
-						action="{% url 'subject:search' %}">
-						<input type="text" class="form-control search_input" style="width:180px; height:40px"
-							name="query_text" placeholder="搜索文章" required><button type="submit"
-							class="btn btn-default search_btn" style="width:80px; height:40px">提交
-						</button>
-					</form>
-				</div>
-			</div>
-		</nav>
-		<hr>
-	</div>
+		<div class="row">
+			<main class="col-md-12">
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<li{% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert alert-info"
+						{% endif %}>{{ message }}</li>
+						{% endfor %}
+				</ul>
+				{% endif %}
+				<h1 class="page-title">留言</h1>
+				<article class="post">
+					<div class="entry-content clearfix">
+						<form action="#" method="post" class="contact-form">
+							<div class="col-md-6 col-md-offset-3">
+								{% csrf_token %}
+								<input type="text" name="name" placeholder="姓名" required>
+								<input type="email" name="email" placeholder="邮件" required>
+								<textarea name="message" rows="5" placeholder="信息(支持 Markdown)" required></textarea>
+								<button class="btn-send btn-5">留言</button>
+							</div>
+						</form>
+					</div>
+				</article>
 
-	<div class="content-body">
-		<div class="container">
-			<div class="row">
-				<main class="col-md-12">
-					{% if messages %}
-					<ul class="messages">
-						{% for message in messages %}
-						<li{% if message.tags %} class="alert alert-{{ message.tags }}" {% else %}
-							class="alert alert-info" {% endif %}>{{ message }}</li>
+				<section class="comment-area" id="comment-area">
+					<hr>
+					<div class="comment-list-panel">
+						<h3>共 <span>{{ contacts | length }}</span> 条留言</h3>
+						<ul class="list-group">
+							{% for contact in contacts %}
+							<li class="list-group-item">
+								<span class="nickname"
+									style="color: goldenrod"><strong>{{ contact.name }}</strong></span>
+								<time class="submit-date"
+									datetime="2020-01-01T00:00:00+00:00">&nbsp;-&nbsp;{{ contact.publish_time }}</time>
+								<div><br /></div>
+								{{ contact.message | safe }}
+							</li>
 							{% endfor %}
-					</ul>
-					{% endif %}
-					<h1 class="page-title">留言</h1>
-					<article class="post">
-						<div class="entry-content clearfix">
-							<form action="#" method="post" class="contact-form">
-								<div class="col-md-6 col-md-offset-3">
-									{% csrf_token %}
-									<input type="text" name="name" placeholder="姓名" required>
-									<input type="email" name="email" placeholder="邮件" required>
-									<textarea name="message" rows="5" placeholder="信息(支持 Markdown)" required></textarea>
-									<button class="btn-send btn-5">留言</button>
-								</div>
-							</form>
-						</div>
-					</article>
-
-					<section class="comment-area" id="comment-area">
-						<hr>
-						<div class="comment-list-panel">
-							<h3>共 <span>{{ contacts | length }}</span> 条留言</h3>
-							<ul class="list-group">
-								{% for contact in contacts %}
-								<li class="list-group-item">
-									<span class="nickname"
-										style="color: goldenrod"><strong>{{ contact.name }}</strong></span>
-									<time class="submit-date"
-										datetime="2020-01-01T00:00:00+00:00">&nbsp;-&nbsp;{{ contact.publish_time }}</time>
-									<div><br /></div>
-									{{ contact.message | safe }}
-								</li>
-								{% endfor %}
-							</ul>
-						</div>
-					</section>
-				</main>
-			</div>
+						</ul>
+					</div>
+				</section>
+			</main>
 		</div>
 	</div>
-
-	<footer id="site-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<p class="copyright">&copy 2020 - <a href="{% url 'subject:index' %}">Hsin</a> - <a
-							href="{% url 'subject:feed' %}" title="Feed 订阅" target="_blank">RSS 订阅</a> - <a
-							href="{% url 'subject:contact' %}" data-hover="留言">留言</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-	<!-- Back to top -->
-	<div id="box" class="box visible-md-block visible-lg-block">
-		<div class="box-in"></div>
-	</div>
-
-	<script type="text/javascript" src="{% static 'subject/js/script.min.js' %}"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
-	<script>
-		hljs.initHighlightingOnLoad();
-		hljs.initLineNumbersOnLoad();
-	</script>
-
-</body>
-
-</html>
+</div>
+{% endblock content %}
