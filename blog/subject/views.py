@@ -11,8 +11,7 @@ from pure_pagination.mixins import PaginationMixin
 from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-
-# Create your views here.
+# from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 
 class IndexView(PaginationMixin, ListView):
@@ -70,12 +69,28 @@ class TagView(IndexView):
         return super().get_queryset().filter(tag=tag).order_by('-modify_time')
 
 
-def search(request):
-    query_text = request.GET.get("query_text")
-    article_list = get_list_or_404(Article, Q(
-        title__icontains=query_text) | Q(content__icontains=query_text))
+class SearchView(IndexView):
+    def get_queryset(self):
+        query_text = self.request.GET.get("query_text")
+        article_list = get_list_or_404(Article, Q(
+            title__icontains=query_text) | Q(content__icontains=query_text))
+        return article_list
 
-    return render(request, 'subject/index.html', context={'article_list': article_list})
+
+# def search(request):
+#     try:
+#         page = request.GET.get('page', 1)
+#     except PageNotAnInteger:
+#         page = 1
+
+#     query_text = request.GET.get("query_text")
+#     article_list = get_list_or_404(Article, Q(
+#         title__icontains=query_text) | Q(content__icontains=query_text))
+
+#     p = Paginator(article_list, 5, request=request)
+#     article_list = p.page(page)
+
+#     return render(request, 'subject/index.html', context={'article_list': article_list})
 
 
 @csrf_protect

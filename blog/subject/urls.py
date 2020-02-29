@@ -9,7 +9,8 @@ urlpatterns = [
          views.ArchiveView.as_view(), name="archive"),
     path('category/<int:id>/', views.CategoryView.as_view(), name="category"),
     path('tag/<int:id>/', views.TagView.as_view(), name="tag"),
-    path('search/', views.search, name="search"),
+    # path('search', views.search, name="search"),
+    path('search', views.SearchView.as_view(), name="search"),
     path('contact/', views.contact, name="contact"),
     path("feed/", feed.ArticleFeed(), name="feed"),
 ]
