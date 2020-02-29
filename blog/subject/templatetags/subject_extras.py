@@ -19,10 +19,10 @@ def show_archives(context):
 
 
 @register.inclusion_tag('subject/inclusions/_categories.html', takes_context=True)
-def show_categories(context, num=5):
+def show_categories(context):
     from django.db.models.aggregates import Count
     categorys = Category.objects.annotate(num_article=Count("article")).filter(
-        num_article__gt=0).order_by("-num_article")[:num]
+        num_article__gt=0).order_by("-num_article")
     return {
         'category_list': categorys,
     }

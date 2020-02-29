@@ -1,4 +1,4 @@
-<div class="widget widget-category">
+<!-- <div class="widget widget-category">
     <h3 class="widget-title">分类</h3>
     <ul>
         {% for category in category_list %}
@@ -10,6 +10,21 @@
         {% empty %}
         <li>
             <ion-icon name="document-attach-outline" size="small"></ion-icon> 暂无分类！
+        </li>
+        {% endfor %}
+    </ul>
+</div> -->
+<div class="widget widget-tag-cloud">
+    <h3 class="widget-title">主题云</h3>
+    <ul>
+        {% for category in category_list %}
+        <li>
+            <a href="{% url 'subject:category' category.pk %}">{{ category.name }}<span
+                    class="post-count">({{ category.num_article }})</span></a>
+        </li>
+        {% empty %}
+        <li>
+            暂无主题！
         </li>
         {% endfor %}
     </ul>
