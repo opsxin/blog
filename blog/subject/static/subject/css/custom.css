@@ -51,6 +51,16 @@ b {
     color: black;
 }
 
+.container-fluid{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+}
+
+.head-hr{
+    margin-top: -15px;
+    margin-bottom: 0px;
+}
 
 body {
     color: #444;
@@ -81,8 +91,12 @@ p {
     margin-bottom: 25px;
 } */
 
+/* 图片居中：https://www.jianshu.com/p/4e79e56e3d07 */
 img {
     max-width: 100%;
+    margin-left: auto; 
+    margin-right:auto; 
+    display:block;
 }
 
 /* .img-responsive-center img {
@@ -204,7 +218,7 @@ img {
  */
 
 .content-body {
-    padding-bottom: 4em;
+    padding-bottom: 1.5em;
 }
 
 .post {
@@ -466,14 +480,18 @@ img {
  */
 .navbar {
     border: 0;
-}
+} 
 
- .search_form{ 
-    font-size:0;
+/*
+.search_form{ 
+    border: 0;
+} */
+
+.navbar-form {
     border: 0;
 }
 
-.search_form .search_input{
+/* .search_form .search_input{
    border: 1px solid #DBDBDB;
    border-radius: 2px 0 0 2px;
    height: 30px;
@@ -488,6 +506,31 @@ img {
    height: 30px;
    width: 20px;
    color: gray
+} */
+
+/* 按钮放 input 内：https://blog.csdn.net/qq_21875331/article/details/81750182 */
+#searchInput {
+    float: left;
+    width: 200px;
+}
+#searchInput .form-control {
+    border: 1px solid #AAAAAA;
+    width: inherit;
+}
+#searchInput .search {
+    border: 1px solid #0088CF;
+}
+#searchTubiao{
+    float:left;
+    font-size:16px;
+    margin-left:-30px;
+    margin-top:3px;
+}
+
+#searchTubiao .search_btn {
+	border: 0;
+	background: white;
+	margin-left: -5px;
 }
 
 /* #header-search-box {

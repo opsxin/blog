@@ -28,22 +28,27 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-default" role="navigation" style="background-color: white;">
-            <div class="container-fluid" style="padding-top: 20px">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{% url 'subject:index' %}"><b>opsxin</b></a>
                 </div>
-                <div>
+                <div class="navbar-form navbar-right">
                     <form class="navbar-form navbar-right search_form" role="search" method="GET"
                         action="{% url 'subject:search' %}">
-                        <input type="text" class="form-control search_input" style="width:180px; height:40px"
-                            name="query_text" placeholder="搜索文章" required><button type="submit"
-                            class="btn btn-default search_btn" style="width:80px; height:40px">提交
-                        </button>
+                        <span class="inputSearch" id="searchInput">
+                            <input type="text" class="form-control input-sm" id='search' name="query_text" value=""
+                                placeholder="搜索文章" required>
+                        </span>
+                        <span class="searchTubiao" id="searchTubiao">
+                            <button type="submit" class="search_btn" title="搜索">
+                                <ion-icon name="search-outline">搜</ion-icon>
+                            </button>
+                        </span>
                     </form>
                 </div>
             </div>
         </nav>
-        <hr>
+        <hr class="head-hr">
     </div>
 
     {% block content %}
