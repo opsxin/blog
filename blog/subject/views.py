@@ -11,7 +11,7 @@ from pure_pagination.mixins import PaginationMixin
 from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-# from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.decorators import method_decorator
 
 
 class IndexView(PaginationMixin, ListView):
@@ -24,7 +24,6 @@ class IndexView(PaginationMixin, ListView):
 def article(request, id):
     article = get_object_or_404(Article, pk=id)
     md = Markdown(extensions=['markdown.extensions.extra',
-                              'markdown.extensions.codehilite',
                               TocExtension(slugify=slugify), ])
     article.content = re.sub(
         r"```(\w+)\s+([^`]+)```", r'<pre><code class="\1">\2</code></pre>', article.content)
@@ -77,40 +76,22 @@ class SearchView(IndexView):
         return article_list
 
 
-# def search(request):
-#     try:
-#         page = request.GET.get('page', 1)
-#     except PageNotAnInteger:
-#         page = 1
+class ContactView(ListView):
+    def get(self, request):
+        contacts = Contact.objects.filter(is_audit="True")
+        md = Markdown(extensions=['markdown.extensions.extra'])
+        for contact in contacts:
+            contact.message = md.convert(contact.message)
+        return render(request, 'subject/contact.html', {"contacts": contacts})
 
-#     query_text = request.GET.get("query_text")
-#     article_list = get_list_or_404(Article, Q(
-#         title__icontains=query_text) | Q(content__icontains=query_text))
-
-#     p = Paginator(article_list, 5, request=request)
-#     article_list = p.page(page)
-
-#     return render(request, 'subject/index.html', context={'article_list': article_list})
-
-
-@csrf_protect
-def contact(request):
-    if request.method == 'POST':
+    @method_decorator(csrf_protect)
+    def post(self, request):
         name = request.POST.get("name")
         email = request.POST.get("email")
-        # subject = request.POST.get("subject")
         message = request.POST.get("message")
         try:
             Contact.objects.create(name=name, email=email, message=message)
             messages.info(request, "留言成功，待审核")
-        except:
+        except Exception:
             messages.error(request, "留言失败")
         return redirect(reverse("subject:contact"))
-    else:
-        contacts = Contact.objects.filter(is_audit="True")
-        md = Markdown(extensions=['markdown.extensions.extra',
-                                  'markdown.extensions.codehilite',
-                                  'markdown.extensions.toc', ])
-        for contact in contacts:
-            contact.message = md.convert(contact.message)
-        return render(request, 'subject/contact.html', {"contacts": contacts})
