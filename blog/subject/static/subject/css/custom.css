@@ -512,17 +512,15 @@ img {
 /* 按钮放 input 内：https://blog.csdn.net/qq_21875331/article/details/81750182 */
 #searchInput {
     float: left;
-    width: 200px;
+    width: 180px;
 }
 #searchInput .form-control {
     border: 1px solid #AAAAAA;
-    width: inherit;
+    width: 185px;
 }
-#searchInput .search {
-    border: 1px solid #0088CF;
-}
+
 #searchTubiao{
-    float:left;
+    float: left;
     font-size:16px;
     margin-left:-30px;
     margin-top:3px;
@@ -531,7 +529,8 @@ img {
 #searchTubiao .search_btn {
 	border: 0;
 	background: white;
-	margin-left: -5px;
+    margin-left: -5px;
+    width: 35px;
 }
 
 /* #header-search-box {
