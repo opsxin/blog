@@ -151,6 +151,8 @@
 //   closeBttn.addEventListener('click', toggleOverlay);
 // })();
 
+$('h2').after('<hr class="article-hr"/>');
+
 /**
  * 表格添加边框
  */
