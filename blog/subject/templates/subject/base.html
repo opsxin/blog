@@ -36,23 +36,19 @@
     <div class="container">
         <nav class="navbar navbar-default" role="navigation" style="background-color: white;">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{% url 'subject:index' %}"><b>opsxin</b></a>
-                </div>
-                <div class="navbar-form navbar-right">
-                    <form class="navbar-form navbar-right search_form" role="search" method="GET"
-                        action="{% url 'subject:search' %}">
-                        <span class="inputSearch" id="searchInput">
-                            <input type="text" class="form-control input-sm" id='search' name="query_text" value=""
-                                placeholder="搜索文章" required>
-                        </span>
-                        <span class="searchTubiao" id="searchTubiao">
-                            <button type="submit" class="search_btn" title="搜索">
-                                <ion-icon name="search-outline">搜</ion-icon>
-                            </button>
-                        </span>
-                    </form>
-                </div>
+                <a class="title" href="{% url 'subject:index' %}"><b>opsxin</b></a>
+                <form class="navbar-form navbar-right search_form" role="search" method="GET"
+                    action="{% url 'subject:search' %}">
+                    <span class="inputSearch" id="searchInput">
+                        <input type="text" class="form-control input-sm" id='search' name="query_text" value=""
+                            placeholder="搜索文章" required>
+                    </span>
+                    <span class="searchTubiao" id="searchTubiao">
+                        <button type="submit" class="search_btn" title="搜索">
+                            <ion-icon name="search-outline">搜</ion-icon>
+                        </button>
+                    </span>
+                </form>
             </div>
         </nav>
         <hr class="head-hr">
