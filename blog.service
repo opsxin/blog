@@ -1,0 +1,15 @@
+[Unit]
+Description=Myself Blog
+After=network.target
+
+[Service]
+ExecStart=/usr/local/blog/.venv/bin/uwsgi --ini /usr/local/blog/uwsgi.ini
+ExecReload=/usr/local/blog/.venv/bin/uwsgi --reload /usr/local/blog/blog.pid
+ExecStop=/usr/local/blog/.venv/bin/uwsgi --stop /usr/local/blog/blog.pid
+Restart=on-failure
+Type=simple
+User=nobody
+Group=nogroup
+
+[Install]
+WantedBy=multi-user.target
