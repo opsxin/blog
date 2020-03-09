@@ -919,11 +919,11 @@ img {
 /**
  * 14.0 Code Highlight
  */
-.codehilite {
+/* .codehilite {
     padding: 0;
-}
+} */
 
-.hljs-ln-numbers {
+/* .hljs-ln-numbers {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -932,21 +932,21 @@ img {
     user-select: none;
 
     text-align: center;
-    color: #ccc;
+    color: #ccc !important;
     border-right: 1px solid #CCC;
     vertical-align: top;
     padding-right: 5px;
-}
+} */
 
-.hljs-ln-n {
+/* .hljs-ln-n {
     width: 30px;
-}
+} */
 
 /* for block of code */
-.hljs-ln .hljs-ln-code {
+/* .hljs-ln .hljs-ln-code {
     padding-left: 10px;
     white-space: pre;
-}
+} */
 
 /**
  * 15.0 - a href color
