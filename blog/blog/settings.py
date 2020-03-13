@@ -24,8 +24,10 @@ SECRET_KEY = 'f+t=dtgditelee&&5d*nh=uy58gn=8-bx7piw&3=tia0-m10)@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["www.opsxin.com]
 
 
 # Application definition
@@ -82,6 +84,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'blog',
+#        'USER': 'blog',
+#        'PASSWORD': 'blog',
+#        'HOST': '1.2.3.4',
+#        'PORT': 3306,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -120,3 +132,4 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/blog/static"

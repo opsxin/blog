@@ -48,3 +48,19 @@
 </div>
 {% endif %}
 {% endblock directory %}
+
+{% block recomment %}
+{% if recomment_article %}
+<div class="widget widget-recent-posts">
+    <h3 class="widget-title">推荐阅读</h3>
+    <ul>
+        {% for article in recomment_article %}
+        <li>
+            <ion-icon style="padding-top: 2px;" name="document-text-outline" size="small"></ion-icon> <a
+                href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endblock recomment %}

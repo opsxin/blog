@@ -7,7 +7,7 @@ register = template.Library()
 @register.inclusion_tag('subject/inclusions/_recent_article.html', takes_context=True)
 def show_recent_article(context, num=5):
     return {
-        "recent_article_list": Article.objects.all()[:num]
+        "recent_article_list": Article.objects.order_by("-publish_time")[:num]
     }
 
 
