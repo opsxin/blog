@@ -40,6 +40,12 @@
 </article>
 {% endblock article %}
 
+{% block comment %}
+<section class="comment-area" id="comment-area">
+    <div id="gitalk-container"></div>
+</section>
+{% endblock comment %}
+
 {% block directory %}
 {% if article.toc %}
 <div class="widget widget-content">
@@ -64,3 +70,29 @@
 </div>
 {% endif %}
 {% endblock recomment %}
+
+{% block resource %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/github.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad({ singleLine: true });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '847350f49cefd1f2326e',
+        clientSecret: '3405f2c2e056abe07f587ae27cb0ade31ad033c7',
+        repo: 'blog',
+        owner: 'opsxin',
+        admin: ['opsxin'],
+        id: location.pathname,
+        distractionFreeMode: false
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+{% endblock resource %}
