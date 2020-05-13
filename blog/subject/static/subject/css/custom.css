@@ -91,6 +91,10 @@ p {
     color: rgb(59, 69, 78);
 }
 
+.entry-content.clearfix p {
+    text-align: center;
+}
+
 .nickname {
     color: goldenrod;
 }
