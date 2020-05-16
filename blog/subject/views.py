@@ -24,8 +24,9 @@ class IndexView(PaginationMixin, ListView):
 def article(request, id):
     article = get_object_or_404(Article, pk=id)
     md = Markdown(extensions=['markdown.extensions.extra',
-                              'pymdownx.superfences',
                               TocExtension(slugify=slugify), ])
+    article.content = re.sub(
+        r"```(\w+)\s+([^`]+)```", r'<pre><code class="\1">\2</code></pre>', article.content)
     article.content = md.convert(article.content)
     article.toc = md.toc
 
