@@ -1,10 +1,10 @@
 <div>
     <ul class="pagination">
         {% if page_obj.has_previous %}
-        <li class="page-item"><a class="page-link" href="?{{ page_obj.previous_page_number.querystring }}">&larr; 上页</a>
+        <li class="page-item"><a class="page-link" href="?{{ page_obj.previous_page_number.querystring }}">&larr;</a>
         </li>
         {% else %}
-        <li class="page-item disabled"><a class="page-link" href="#">&larr; 上页</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">&larr;</a></li>
         {% endif %}
         {% for page in page_obj.pages %}
         {% if page %}
@@ -18,10 +18,10 @@
         {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
-        <li class="page-item"><a class="page-link" href="?{{ page_obj.next_page_number.querystring }}">下页 &rarr;</a>
+        <li class="page-item"><a class="page-link" href="?{{ page_obj.next_page_number.querystring }}">&rarr;</a>
         </li>
         {% else %}
-        <li class="page-item disabled"><a class="page-link" href="#">下页 &rarr;</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">&rarr;</a></li>
         {% endif %}
     </ul>
 </div>

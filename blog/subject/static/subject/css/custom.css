@@ -95,6 +95,10 @@ p {
     color: goldenrod;
 }
 
+.toc {
+    margin-left: -20px;
+}
+
 /* #single p,
 #page p {
     margin-bottom: 25px;
