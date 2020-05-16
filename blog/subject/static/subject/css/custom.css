@@ -70,7 +70,7 @@ b {
 
 .head-hr{
     margin-top: 0;
-    margin-bottom: 0px;
+    /* margin-bottom: 0px; */
 }
 
 .article-hr {
@@ -374,7 +374,7 @@ img {
 
 .widget {
     background: #fff;
-    padding: 30px 0 0;
+    /* padding: 30px 0 0; */
 }
 
 .widget-title {

@@ -27,7 +27,10 @@ def article(request, id):
                               TocExtension(slugify=slugify), ])
     article.content = re.sub(
         r"```(\w+)\s+([^`]+)```", r'<pre><code class="\1">\2</code></pre>', article.content)
+    content = article.content
     article.content = md.convert(article.content)
+    content = "# " + article.title + "\n" + content
+    md.convert(content)
     article.toc = md.toc
 
     article.tags = [{"name": tag.name, "id": tag.id}
