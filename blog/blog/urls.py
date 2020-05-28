@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("subject.urls")),
+    path('', include("domain_whois.urls")),
     # path('favicon.ico', serve, {'path': 'subject/img/favicon.ico'}),
 ]
