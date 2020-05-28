@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'subject',
     'pure_pagination',
+    'domain_whois'
 ]
 
 MIDDLEWARE = [
