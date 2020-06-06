@@ -40,8 +40,8 @@ def domain_cert(request, domain, port=443):
             GMT_FORMAT = '%b %d %H:%M:%S %Y GMT'
             pattern = re.compile(
                 r'^\*\s+subject:\s(?P<subject>.*)\s\*\s+start date: (?P<start>.*)\s\*\s+expire date: (?P<expire>.*)\s(\*\s+subjectAltName: host\s.*\smatched cert\'s "(?P<cert>[^"]*)"\s)?\*\s+issuer: .*\s\*\s+SSL certificate verify\s(?P<status>[^(.]+)', re.M)
-            issuer_O = re.compile(r'\*\s+issuer:.*O=(?P<O>[\w\s]+)[\s;]')
-            issuer_CN = re.compile(r'\*\s+issuer:.*CN=(?P<CN>[\w\s]+)[\s;]')
+            issuer_O = re.compile(r'\*\s+issuer:.*O=(?P<O>[\w\s\']+)[\s;]')
+            issuer_CN = re.compile(r'\*\s+issuer:.*CN=(?P<CN>[\w\s\']+)[\s;]')
             content = pattern.search(text[1])
             organization = issuer_O.search(text[1])
             common_name = issuer_CN.search(text[1])
