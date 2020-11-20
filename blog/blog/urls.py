@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("subject.urls")),
     path('', include("domain_whois.urls")),
+    path('', include("paste.urls")),
     # path('favicon.ico', serve, {'path': 'subject/img/favicon.ico'}),
 ]
