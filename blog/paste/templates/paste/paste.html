@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>opsxin paste</title>
+
+    <meta charset="UTF-8">
+    <meta name="author" content="opsxin">
+    <meta name="description" content="opsxin, 记录博客">
+    <meta name="keywords" content="opsxin Python Linux Shell DevOps">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" sizes="128x128" href="/favicon-128.ico">
+    <link rel="icon" sizes="64x64" href="/favicon.ico">
+    <link rel="icon" sizes="48x48" href="/favicon-48.ico">
+    <link rel="icon" sizes="32x32" href="/favicon-32.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/">opsxin</a>
+        </nav>
+        <div class="row align-items-center">
+            <div class="col">
+            </div>
+            <div class="col">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">姓名</label>
+                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
+                            placeholder="姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">文本格式</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="code_class">
+                            <option value="plaintext" selected>plaintext</option>
+                            <option value="bash">bash</option>
+                            <option value="c++">c++</option>
+                            <option value="c#">c#</option>
+                            <option value="css">css</option>
+                            <option value="dockerfile">dockerfile</option>
+                            <option value="go">go</option>
+                            <option value="html">html</option>
+                            <option value="java">java</option>
+                            <option value="javascript">javascript</option>
+                            <option value="json">json</option>
+                            <option value="markdown">markdown</option>
+                            <option value="php">php</option>
+                            <option value="python">python</option>
+                            <option value="sql">sql</option>
+                            <option value="typescript">typescript</option>
+                            <option value="xml">xml</option>
+                            <option value="yaml">yaml</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">保存天数</label>
+                        <select class="form-control" id="exampleFormControlSelect2" name="validity">
+                            <option value="1" selected>1</option>
+                            <option value="3">3</option>
+                            <option value="7">7</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">文本内容</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="message"
+                            rows="5"></textarea>
+                    </div>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
