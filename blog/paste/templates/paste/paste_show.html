@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>opsxin paste</title>
+
+    <meta charset="UTF-8">
+    <meta name="author" content="opsxin">
+    <meta name="description" content="opsxin, 记录博客">
+    <meta name="keywords" content="opsxin Python Linux Shell DevOps">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" sizes="128x128" href="/favicon-128.ico">
+    <link rel="icon" sizes="64x64" href="/favicon.ico">
+    <link rel="icon" sizes="48x48" href="/favicon-48.ico">
+    <link rel="icon" sizes="32x32" href="/favicon-32.ico">
+
+    <link rel="stylesheet"
+        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+    <div>
+        <pre>
+            <code class="{{ contents.code_class }}" style="font-size: 1.6em;">{% autoescape off %}{{ contents.message }}{% endautoescape %}</code>
+        </pre>
+    </div>
+</body>
+
+</html>
