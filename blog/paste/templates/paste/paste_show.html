@@ -25,7 +25,7 @@
 <body>
     <div>
         <pre>
-            <code class="{{ contents.code_class }}" style="font-size: 1.6em;">{% autoescape off %}{{ contents.message }}{% endautoescape %}</code>
+            <code class="{{ contents.code_class }}">{% autoescape on %}{{ contents.message }}{% endautoescape %}</code>
         </pre>
     </div>
 </body>

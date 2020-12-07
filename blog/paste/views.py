@@ -1,5 +1,4 @@
 import json
-import bleach
 from .models import Paste
 from datetime import datetime, timedelta
 from django.urls import reverse
@@ -29,8 +28,7 @@ def paste(request):
 
         msg = request.POST.get("message")
 
-        p = Paste.objects.create(name=name, message=bleach.clean(
-            msg, tags=[], strip_comments=False), valid_day=valid_day, code_class=code_class.lower())
+        p = Paste.objects.create(name=name, message=msg, valid_day=valid_day, code_class=code_class.lower())
         url = reverse('paste:paste_show', kwargs={'name': name, 'id': p.pk})
 
         return redirect(request.build_absolute_uri(url))
@@ -51,8 +49,7 @@ def paste_upload(request, name):
         if int(valid_day) <= 0 or int(valid_day) > 30:
             valid_day = 30
 
-        p = Paste.objects.create(name=name, message=bleach.clean(
-            msg, tags=[], strip_comments=False), valid_day=valid_day, code_class=code_class.lower())
+        p = Paste.objects.create(name=name, message=msg, valid_day=valid_day, code_class=code_class.lower())
         url = reverse('paste:paste_show', kwargs={'name': name, 'id': p.pk})
 
         return HttpResponse(request.build_absolute_uri(url))

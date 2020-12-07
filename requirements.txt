@@ -1,4 +1,3 @@
-bleach==3.2.1
 Django==2.2.17
 django-pure-pagination==0.3.0
 Markdown==3.3.3
