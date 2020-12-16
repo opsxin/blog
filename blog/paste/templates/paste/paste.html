@@ -30,7 +30,8 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">姓名</label>
                         <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
-                            placeholder="姓名" required>
+                            placeholder="姓名" maxlength="15" onkeyup="this.value=this.value.replace(/[, ]/g,'')" 
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">文本格式</label>
