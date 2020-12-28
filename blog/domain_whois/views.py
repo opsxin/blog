@@ -14,11 +14,17 @@ def domain_whois(request, domain):
     d = {"code": 1, "reason": "Succeed", "result": {}}
     try:
         w = whois.query(domain)
+        GMT_FORMAT = '%Y-%m-%d %H:%M:%S'
+        creation_date = datetime.datetime.strptime(
+                str(w.creation_date), GMT_FORMAT)+datetime.timedelta(hours=8)
+        expiration_date = datetime.datetime.strptime(
+                str(w.expiration_date), GMT_FORMAT)+datetime.timedelta(hours=8)
         d["result"]["name"] = w.name
         d["result"]["status"] = w.status.split()[0]
         d["result"]["registrar"] = w.registrar
-        d["result"]["creation_date"] = w.creation_date
-        d["result"]["expiration_date"] = w.expiration_date
+        d["result"]["creation_date"] = creation_date
+        d["result"]["expiration_date"] = expiration_date
+        d["result"]["validity"] = (expiration_date - datetime.datetime.now()).days
         d["result"]["name_servers"] = [x for x in w.name_servers]
     except Exception as e:
         d["code"] = 0
