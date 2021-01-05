@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from subject.models import Article
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
 # from django.contrib.staticfiles.views import serve
+
+
+info_dict = {
+    'queryset': Article.objects.all(),
+    'date_field': 'modify_time',
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +32,7 @@ urlpatterns = [
     path('', include("domain_whois.urls")),
     path('', include("paste.urls")),
     # path('favicon.ico', serve, {'path': 'subject/img/favicon.ico'}),
+    path('sitemap.xml', sitemap,
+         {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.5)}},
+         name='django.contrib.sitemaps.views.sitemap'),
 ]
