@@ -15,15 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from subject.models import Article
+from subject.models import Article, Category, Tag
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
 # from django.contrib.staticfiles.views import serve
 
 
-info_dict = {
+article_dict = {
     'queryset': Article.objects.all(),
     'date_field': 'modify_time',
+}
+
+category_dict = {
+    'queryset': Category.objects.all(),
+    'date_field': 'publish_time',
+}
+
+tag_dict = {
+    'queryset': Tag.objects.all(),
+    'date_field': 'publish_time',
 }
 
 urlpatterns = [
@@ -33,6 +43,8 @@ urlpatterns = [
     path('', include("paste.urls")),
     # path('favicon.ico', serve, {'path': 'subject/img/favicon.ico'}),
     path('sitemap.xml', sitemap,
-         {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.5)}},
+         {'sitemaps': {'article': GenericSitemap(article_dict, priority=0.6), 
+             'tag': GenericSitemap(tag_dict, priority=0.4),
+             'category': GenericSitemap(category_dict, priority=0.5)}},
          name='django.contrib.sitemaps.views.sitemap'),
 ]

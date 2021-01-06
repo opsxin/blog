@@ -7,9 +7,13 @@ from django.urls import reverse
 
 class Tag(models.Model):
     name = models.CharField("标签", max_length=20)
+    publish_time = models.DateTimeField("时间", auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('subject:tag', kwargs={'id': self.pk})
 
     class Meta:
         verbose_name = "标签"
@@ -18,9 +22,13 @@ class Tag(models.Model):
 
 class Category(models.Model):
     name = models.CharField("类别", max_length=20)
+    publish_time = models.DateTimeField("时间", auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('subject:category', kwargs={'id': self.pk})
 
     class Meta:
         verbose_name = "类别"
