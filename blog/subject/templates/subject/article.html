@@ -1,86 +1,82 @@
-{% extends "subject/base.html" %}
+{% extends 'subject/base.html' %}
+{% load static %}
 
-{% block title %}
-<title>{{ article.title }}</title>
-{% endblock title %}
-
-{% block article %}
-<article class="post post-1">
-    <header class="entry-header">
-        <h1 class="entry-title">{{ article.title }}</h1>
-        <div class="entry-meta">
-            <span class="post-category"><a
-                    href="{% url 'subject:category' article.category_id %}">{{ article.category }}</a></span>
-            <span class="post-date"><time class="entry-date"
-                    datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time></span>
-            <span class="views-count">{{ article.read_num }} 阅读</span>
+{% block content %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{% static "subject/img/post-bg.jpg" %}')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>{{ article.title }}</h1>
+                    <span class="meta">Posted by
+                        <a href="#">Hsin</a>
+                        on 
+                        <time class="entry-date" datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time></span>
+                </div>
+            </div>
         </div>
-    </header>
-    <div class="entry-content clearfix">
-        {{ article.content | safe }}
-        {% if article.tags %}
-        <hr>
-        {% for tag in article.tags %}
-        <ion-icon name="pricetag-outline" size="small"></ion-icon> <a
-            href="{% url 'subject:tag' tag.id %}">{{ tag.name }}</a>
-        {% endfor %}
-        {% endif %}
-        <hr>
-        {% if pre_article.id == 0 %}
-        <span class="disabled pre_article">&larr; {{ pre_article.title }}</span>
-        {% else %}
-        <a href="{% url 'subject:article' pre_article.id %}" class="pre_article">&larr; {{ pre_article.title }}</a>
-        {% endif %}
-        {% if next_article.id == 0 %}
-        <span class="disabled next_article">{{ next_article.title }} &rarr;</span>
-        {% else %}
-        <a href="{% url 'subject:article' next_article.id %}" class="next_article">{{ next_article.title }} &rarr;</a>
-        {% endif %}
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ article.content | safe }}
+            </div>
+        </div>
     </div>
 </article>
-{% endblock article %}
 
-{% block comment %}
-<section class="comment-area" id="comment-area">
-    <div id="gitalk-container"></div>
-</section>
-{% endblock comment %}
-
-{% block directory %}
-{% if article.toc %}
-<div class="widget widget-content">
-    <h3 class="widget-title">文章目录</h3>
-    {{ article.toc | safe }}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% if article.tags %}
+            <hr>
+            {% for tag in article.tags %}
+            <i class="fas fa-tag" size="2x"></i> <a href="{% url 'subject:tag' tag.id %}">{{ tag.name }}</a>
+            {% endfor %}
+            {% endif %}
+            <hr>
+            {% if pre_article.id == 0 %}
+            <span class="disabled float-left">&larr; {{ pre_article.title }}</span>
+            {% else %}
+            <a href="{% url 'subject:article' pre_article.id %}" class="float-left">&larr; {{ pre_article.title }}</a>
+            {% endif %}
+            {% if next_article.id == 0 %}
+            <span class="disabled float-right">{{ next_article.title }} &rarr;</span>
+            {% else %}
+            <a href="{% url 'subject:article' next_article.id %}" class="float-right">{{ next_article.title }}
+                &rarr;</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
-{% endif %}
-{% endblock directory %}
 
-{% block recomment %}
-{% if recomment_article %}
-<div class="widget widget-recent-posts">
-    <h3 class="widget-title">推荐阅读</h3>
-    <ul>
-        {% for article in recomment_article %}
-        <li>
-            <ion-icon style="padding-top: 2px;" name="document-text-outline" size="small"></ion-icon> <a
-                href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div id="gitalk-container"></div>
+        </div>
+    </div>
 </div>
-{% endif %}
-{% endblock recomment %}
+<hr>
+{% endblock content %}
 
 {% block resource %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/github.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"></script>
-<script
-    src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
 <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad({ singleLine: true });
 </script>
+<script>
+    $("table").addClass("table table-bordered table-striped");
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script>
     var gitalk = new Gitalk({

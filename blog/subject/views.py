@@ -20,6 +20,18 @@ class IndexView(PaginationMixin, ListView):
     context_object_name = "article_list"
     paginate_by = 5
 
+class PostView(PaginationMixin, ListView):
+    model = Article
+    template_name = "subject/post.html"
+    context_object_name = "article_list"
+    paginate_by = 20
+
+def link(request):
+    tags = Tag.objects.all()
+    categories = Category.objects.all()
+
+    return render(request, "subject/link.html", context={
+        "tags": tags, "categories": categories})
 
 def article(request, id):
     article = get_object_or_404(Article, pk=id)

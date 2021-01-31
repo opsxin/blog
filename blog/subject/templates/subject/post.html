@@ -3,13 +3,13 @@
 
 {% block content %}
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('{% static "subject/img/home-bg.jpg" %}')">
+<header class="masthead" style="background-image: url('{% static "subject/img/post-bg.jpg" %}')">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
-          <h1>Opsxin Blog</h1>
+          <h1>文章</h1>
         </div>
       </div>
     </div>
@@ -23,17 +23,8 @@
       {% for article in article_list %}
       <div class="post-preview">
         <a href="{{ article.get_absolute_url }}">
-          <h2 class="post-title">
             {{ article.title }}
-          </h2>
-          <h5 class="post-subtitle">
-            {{ article.excerpt }}
-          </h5>
         </a>
-        <p class="post-meta">Posted by
-          <a href="#">Hsin</a>
-          on <time class="entry-date" datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time>
-        </p>
       </div>
       <hr>
       {% endfor %}
