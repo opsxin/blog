@@ -2,7 +2,7 @@ Django==2.2.17
 django-pure-pagination==0.3.0
 Markdown==3.3.3
 mysqlclient==2.0.3
-packaging==20.8
+packaging==20.9
 pkg-resources==0.0.0
 pyparsing==2.4.7
 pytz==2020.5
