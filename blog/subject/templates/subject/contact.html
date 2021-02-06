@@ -1,67 +1,102 @@
-{% extends "subject/base.html" %}
+{% extends 'subject/base.html' %}
+
+{% block link %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/github.min.css">
+{% endblock link %}
 
 {% block title %}
 <title>给我留言</title>
 {% endblock title %}
 
 {% block content %}
-<div class="content-body">
-	<div class="container">
-		<div class="row">
-			<main class="col-md-12">
-				{% if messages %}
-				<ul class="messages">
-					{% for message in messages %}
-					<li{% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert alert-info"
-						{% endif %}>{{ message }}</li>
-						{% endfor %}
-				</ul>
-				{% endif %}
-				<h1 class="page-title">留言</h1>
-				<article class="post">
-					<div class="entry-content clearfix">
-						<form action="#" method="post" class="contact-form">
-							<div class="col-md-6 col-md-offset-3">
-								{% csrf_token %}
-								<input type="text" name="name" placeholder="姓名" required>
-								<input type="email" name="email" placeholder="邮件" required>
-								<textarea name="message" rows="5" placeholder="信息(支持 Markdown)" required></textarea>
-								<button class="btn-send btn-5">留言</button>
-							</div>
-						</form>
-					</div>
-				</article>
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+  <section class="py-4 px-4">
+    <h2 class="text-4xl mb-10 text-center font-semibold font-heading">留言</h2>
+    <div class="w-full max-w-2xl mx-auto mb-8">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags and message.tags == "error" %} class="text-lg text-white bg-red-700 rounded my-4 py-1 pl-2"
+          {% else %} class="text-lg text-white bg-green-700 rounded my-4" {% endif %}>
+          {{ message }}
+          </li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      <form name="sentMessage" id="contactForm" action="#" method="post">
+        {% csrf_token %}
+        <div class="flex mb-4 -mx-2">
+          <div class="w-1/2 px-2">
+            <input
+              class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-50 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
+              type="text" placeholder="姓名" id="name" name="name" required
+              data-validation-required-message="Please enter your name.">
+          </div>
+          <div class="w-1/2 px-2">
+            <input
+              class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-50 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
+              type="email" placeholder="Email 地址" id="email" name="email" required
+              data-validation-required-message="Please enter your email address.">
+          </div>
+        </div>
+        <div class="mb-4"><textarea
+            class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-50 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
+            placeholder="消息" id="message" name="message" required
+            data-validation-required-message="Please enter a message." rows="5"></textarea></div>
+        <div>
+          <button
+            class="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-600 hover:bg-indigo-700 font-semibold rounded shadow"
+            type="submit">提交</button>
+        </div>
+      </form>
+    </div>
+  </section>
 
-				<section class="comment-area" id="comment-area">
-					<hr>
-					<div class="comment-list-panel">
-						<h3>共 <span>{{ contacts | length }}</span> 条留言</h3>
-						<ul class="list-group">
-							{% for contact in contacts %}
-							<li class="list-group-item">
-								<span><strong class="nickname">{{ contact.name }}</strong></span>
-								<time class="submit-date"
-									datetime="2020-01-01T00:00:00+00:00">&nbsp;-&nbsp;{{ contact.publish_time }}</time>
-								<div><br /></div>
-								{{ contact.message | safe }}
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</section>
-			</main>
-		</div>
-	</div>
+  <div class="container py-6 px-4 content">
+    <div class="w-full max-w-2xl mx-auto mb-8">
+      <span class="text-lg pt-4">当前可展示 <span class="text-red-500">{{ contacts | length }}</span> 条留言</span>
+      <hr class="border-b-2 border-gray-400 mb-4">
+      <ul class="">
+        {% for contact in contacts %}
+        <li class="list-group-item">
+          <span><strong>{{ contact.name }}</strong></span>
+          <time class="entry-date" datetime="2020-01-01T00:00:00+00:00">-&nbsp;{{ contact.publish_time }}</time>
+          {{ contact.message | safe }}
+        </li>
+        <hr class="border-b-2 border-gray-400 my-4">
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 </div>
 {% endblock content %}
 
 {% block resource %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/github.min.css">
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
 <script>
-	hljs.initHighlightingOnLoad();
-	hljs.initLineNumbersOnLoad({ singleLine: true });
+  $(".content p").addClass("py-3")
+  $(".content h1,h2,h3,h4,h5,h6").addClass("py-2 font-sans")
+  $(".content ul").addClass("list-disc list-inside")
+  $("ol,ul li").addClass("py-1 pl-2")
+  $(":not(pre) > code").addClass("text-red-400 pr-1 pl-1")
+  $(".content a").addClass("text-blue-500 no-underline hover:underline")
+  $("pre").addClass("rounded font-mono text-base p-2 md:p-3")
+  $(".content h1").addClass("text-3xl md:text-4xl")
+  $(".content h2").addClass("text-2xl md:text-3xl")
+  $(".content h2").after("<hr class='border-gray-300 mb-4 mx-2'>")
+  $(".content h3").addClass("text-xl md:text-2xl")
+  $(".content h4").addClass("text-lg md:text-xl")
+  $(".content h5").addClass("text-base md:text-lg")
+  $(".content h6").addClass("text-sm md:text-base")
+  $("blockquote").addClass("border-l-4 border-blue-500 italic my-8 pl-6 md:pl-6")
+  $("table").addClass("w-full text-left border-collapse board")
+  $("table  th ").addClass("z-20 border text-base font-semibold top-0 p-2 border-gray-300")
+  $("table > tbody").addClass("w-full text-left border-collapse")
+  $("table td").addClass("py-2 p-2 font-mono border text-sm border-gray-300")
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
 </script>
 {% endblock resource %}

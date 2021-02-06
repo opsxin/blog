@@ -28,7 +28,8 @@ def paste(request):
 
         msg = request.POST.get("message")
 
-        p = Paste.objects.create(name=name, message=msg, valid_day=valid_day, code_class=code_class.lower())
+        p = Paste.objects.create(
+            name=name, message=msg, valid_day=valid_day, code_class=code_class.lower())
         url = reverse('paste:paste_show', kwargs={'name': name, 'id': p.pk})
 
         return redirect(request.build_absolute_uri(url))
@@ -49,7 +50,8 @@ def paste_upload(request, name):
         if int(valid_day) <= 0 or int(valid_day) > 30:
             valid_day = 30
 
-        p = Paste.objects.create(name=name, message=msg, valid_day=valid_day, code_class=code_class.lower())
+        p = Paste.objects.create(
+            name=name, message=msg, valid_day=valid_day, code_class=code_class.lower())
         url = reverse('paste:paste_show', kwargs={'name': name, 'id': p.pk})
 
         return HttpResponse(request.build_absolute_uri(url))

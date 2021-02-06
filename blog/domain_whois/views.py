@@ -16,15 +16,16 @@ def domain_whois(request, domain):
         w = whois.query(domain)
         GMT_FORMAT = '%Y-%m-%d %H:%M:%S'
         creation_date = datetime.datetime.strptime(
-                str(w.creation_date), GMT_FORMAT)+datetime.timedelta(hours=8)
+            str(w.creation_date), GMT_FORMAT)+datetime.timedelta(hours=8)
         expiration_date = datetime.datetime.strptime(
-                str(w.expiration_date), GMT_FORMAT)+datetime.timedelta(hours=8)
+            str(w.expiration_date), GMT_FORMAT)+datetime.timedelta(hours=8)
         d["result"]["name"] = w.name
         d["result"]["status"] = w.status.split()[0]
         d["result"]["registrar"] = w.registrar
         d["result"]["creation_date"] = creation_date
         d["result"]["expiration_date"] = expiration_date
-        d["result"]["validity"] = (expiration_date - datetime.datetime.now()).days
+        d["result"]["validity"] = (
+            expiration_date - datetime.datetime.now()).days
         d["result"]["name_servers"] = [x for x in w.name_servers]
     except Exception as e:
         d["code"] = 0
@@ -40,7 +41,8 @@ def domain_cert(request, domain, port=443):
         cmd = "curl -vs -m 3 https://{}:{}/ -o /dev/null".format(domain, port)
         text = subprocess.getstatusoutput(cmd)
         if "SSL certificate problem" in text[1]:
-            cmd_skip_cert = "curl -svk -m 3 https://{}:{}/ -o /dev/null".format(domain, port)
+            cmd_skip_cert = "curl -svk -m 3 https://{}:{}/ -o /dev/null".format(
+                domain, port)
             text = subprocess.getstatusoutput(cmd_skip_cert)
         if text[0] == 0:
             GMT_FORMAT = '%b %d %H:%M:%S %Y GMT'

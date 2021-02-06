@@ -1,33 +1,25 @@
-<!DOCTYPE html>
-<html>
+{% extends 'subject/base.html' %}
 
-<head>
-    <title>opsxin paste</title>
+{% block link %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/github.min.css">
+{% endblock link %}
 
-    <meta charset="UTF-8">
-    <meta name="author" content="opsxin">
-    <meta name="description" content="opsxin, 记录博客">
-    <meta name="keywords" content="opsxin Python Linux Shell DevOps">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+{% block title %}
+<title>Paste Show</title>
+{% endblock title %}
 
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="icon" sizes="128x128" href="/favicon-128.ico">
-    <link rel="icon" sizes="64x64" href="/favicon.ico">
-    <link rel="icon" sizes="48x48" href="/favicon-48.ico">
-    <link rel="icon" sizes="32x32" href="/favicon-32.ico">
+{% block content %}
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+    <h2 class="text-4xl mb-10 text-center font-semibold font-heading">Paste Show</h2>
+    <section class="py-4 px-4">
+        <div class="w-full max-w-2xl mx-auto mb-8">
+            <pre><code class="{{ contents.code_class }}">{% autoescape on %}{{ contents.message }}{% endautoescape %}</code></pre>
+        </div>
+    </section>
+</div>
+{% endblock content %}
 
-    <link rel="stylesheet"
-        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-
-<body>
-    <div>
-        <pre>
-            <code class="{{ contents.code_class }}">{% autoescape on %}{{ contents.message }}{% endautoescape %}</code>
-        </pre>
-    </div>
-</body>
-
-</html>
+{% block resource %}
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% endblock resource %}

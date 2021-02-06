@@ -1,32 +1,23 @@
 {% extends 'subject/base.html' %}
 
-{% block article %}
-{% for article in article_list %}
-<article class="post post-{{ article.pk }}">
-    <header class="entry-header">
-        <h1 class="entry-title">
-            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-        </h1>
-        <div class="entry-meta">
-            <span class="post-category"><a
-                    href="{% url 'subject:category' article.category_id %}">{{ article.category }}</a></span>
-            <span class="post-date"><time class="entry-date"
-                    datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time></span>
-            <span class="views-count">{{ article.read_num }} 阅读</span>
+{% block content %}
+<div class="container w-full md-auto mx-auto pt-4">
+    <section class="relative py-8 bg-gray-100 min-w-screen animation-fade animation-delay">
+        <div class="container px-8 mx-auto sm:px-12 xl:px-5">
+            {% for article in article_list %}
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-gray-100 border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
+                <h3 class="text-lg font-bold text-blue-400 hover:text-blue-700 sm:text-xl md:text-2xl"><a
+                        href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+                <p class="mt-2 text-base text-gray-500 sm:text-lg md:text-normal">{{ article.excerpt }}</p>
+            </div>
+            {% endfor %}
         </div>
-    </header>
-    <div class="entry-content clearfix">
-        <p style="text-align: center;">{{ article.excerpt }}</p>
-        <div class="read-more cl-effect-14">
-            <a href="{{ article.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-        </div>
-    </div>
-</article>
-{% endfor %}
-{% endblock article %}
-
-{% block paginate %}
-{% if is_paginated %}
-{{ page_obj.render }}
-{% endif %}
-{% endblock paginate %}
+        {% block paginate %}
+        {% if is_paginated %}
+        {{ page_obj.render }}
+        {% endif %}
+        {% endblock paginate %}
+    </section>
+</div>
+{% endblock content %}

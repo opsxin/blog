@@ -4,6 +4,7 @@ from . import views, feed
 app_name = "subject"
 urlpatterns = [
     path('', views.IndexView.as_view(), name="index"),
+    path('archive/', views.link, name="link"),
     path('article/<int:id>/', views.article, name="article"),
     path('archive/<int:year>/<int:month>/',
          views.ArchiveView.as_view(), name="archive"),
