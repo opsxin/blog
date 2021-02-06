@@ -2,24 +2,11 @@
 {% load static %}
 
 {% block content %}
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('{% static "subject/img/post-bg.jpg" %}')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>文章</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
 <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+  <div class="py-4 px-4">
+    <h2 class="text-4xl mb-10 text-center font-semibold font-heading">全部文章</h2>
+    <div class="text-base md:text-lg px-4 py-6">
       {% for article in article_list %}
       <div class="post-preview">
         <a href="{{ article.get_absolute_url }}">

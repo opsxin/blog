@@ -1,49 +1,23 @@
 {% extends 'subject/base.html' %}
-{% load static %}
 
 {% block content %}
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('{% static "subject/img/home-bg.jpg" %}')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>Opsxin Blog</h1>
+<div class="container w-full md-auto mx-auto pt-4">
+    <section class="relative py-8 bg-gray-100 min-w-screen animation-fade animation-delay">
+        <div class="container px-8 mx-auto sm:px-12 xl:px-5">
+            {% for article in article_list %}
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-gray-100 border border-gray-200 rounded-lg sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3">
+                <h3 class="text-lg font-bold text-blue-400 hover:text-blue-700 sm:text-xl md:text-2xl"><a
+                        href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+                <p class="mt-2 text-base text-gray-500 sm:text-lg md:text-normal">{{ article.excerpt }}</p>
+            </div>
+            {% endfor %}
         </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      {% for article in article_list %}
-      <div class="post-preview">
-        <a href="{{ article.get_absolute_url }}">
-          <h2 class="post-title">
-            {{ article.title }}
-          </h2>
-          <h5 class="post-subtitle">
-            {{ article.excerpt }}
-          </h5>
-        </a>
-        <p class="post-meta">Posted by
-          <a href="#">Hsin</a>
-          on <time class="entry-date" datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time>
-        </p>
-      </div>
-      <hr>
-      {% endfor %}
-      <!-- Pager -->
-      {% if is_paginated %}
-      {{ page_obj.render }}
-      {% endif %}
-    </div>
-  </div>
+        {% block paginate %}
+        {% if is_paginated %}
+        {{ page_obj.render }}
+        {% endif %}
+        {% endblock paginate %}
+    </section>
 </div>
-
-<hr>
 {% endblock content %}

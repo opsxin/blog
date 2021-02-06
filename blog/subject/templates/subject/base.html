@@ -5,12 +5,14 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="opsxin, 记录博客">
   <meta name="keywords" content="opsxin Python Linux Shell DevOps">
   <meta name="author" content="opsxin">
 
+  {% block title %}
   <title>opsxin</title>
+  {% endblock title %}
 
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="icon" sizes="128x128" href="/favicon-128.ico">
@@ -18,49 +20,46 @@
   <link rel="icon" sizes="48x48" href="/favicon-48.ico">
   <link rel="icon" sizes="32x32" href="/favicon-32.ico">
 
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'subject/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="{% static 'subject/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
-    type='text/css'>
-  <link
-    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-    rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'subject/css/clean-blog.min.css' %}" rel="stylesheet">
-
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
+  {% block link %}
+  {% endblock link %}
   <!-- Google ads-->
   <script data-ad-client="ca-pub-1686172718897640" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </head>
 
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'subject:index' %}">opsxin</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-        aria-label="Toggle navigation">菜单 <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'subject:index' %}">主页</a>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <nav id="header" class="fixed w-full z-10 top-0">
+    <div id="progress" class="h-1 z-20 top-0"
+      style="background:linear-gradient(to right, #4794ec var(--scroll), transparent 0);"></div>
+    <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
+      <div class="pl-4">
+        <a class="text-lg text-gray-900 no-underline hover:no-underline font-extrabold"
+          href="{% url 'subject:index' %}">
+          opsxin
+        </a>
+      </div>
+      <div class="block lg:hidden pr-4">
+        <button id="nav-toggle"
+          class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-green-500 appearance-none focus:outline-none">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>菜单</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-gray-100 md:bg-transparent z-20"
+        id="nav-content">
+        <ul class="list-reset lg:flex justify-end flex-1 items-center">
+          <li class="mr-3">
+            <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
+              href="{% url 'subject:link' %}">归档</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'subject:post' %}">文章</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'subject:link' %}">归档</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'subject:contact' %}">留言</a>
+          <li class="mr-3">
+            <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
+              href="{% url 'subject:contact' %}">留言</a>
           </li>
         </ul>
       </div>
@@ -70,48 +69,77 @@
   {% block content %}
   {% endblock content %}
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="https://github.com/opsxin">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="{% url 'subject:feed' %}">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="{% url 'paste:paste' %}">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fas fa-paste fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+  {% block pagination %}
+  {% endblock pagination %}
+
+  <hr class="border-gray-400 mx-4">
+
+  <footer class="text-gray-700 bg-gray-100 body-font">
+    <div class="container flex flex-col items-center px-8 py-8 mx-auto max-w-7xl sm:flex-row">
+      <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0">
+        &copy; 2021 <a href="{% url 'subject:index' %}">opsxin</a>
+      </p>
+      <span class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
+        <a href="https://github.com/opsxin" target="_blank" class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">GitHub</span>
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+        <a href="{% url 'subject:feed' %}" target="_blank" class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">RSS</span>
+          <ion-icon name="logo-rss"></ion-icon>
+        </a>
+        <a href="{% url 'paste:paste' %}" class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Paste</span>
+          <ion-icon name="clipboard-outline"></ion-icon>
+        </a>
+      </span>
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'subject/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'subject/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
 
-  <!-- Custom scripts for this template -->
-  <script src="{% static 'subject/js/clean-blog.min.js' %}"></script>
+  <script>
+    //Source: https://alligator.io/js/progress-bar-javascript-css-variables/
+    var h = document.documentElement,
+      b = document.body,
+      st = 'scrollTop',
+      sh = 'scrollHeight',
+      progress = document.querySelector('#progress'),
+      scroll;
+    var scrollpos = window.scrollY;
+    var header = document.getElementById("header");
+    var navcontent = document.getElementById("nav-content");
+
+    document.addEventListener('scroll', function () {
+
+      /*Refresh scroll % width*/
+      scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+      progress.style.setProperty('--scroll', scroll + '%');
+
+      /*Apply classes for slide in bar*/
+      scrollpos = window.scrollY;
+
+      if (scrollpos > 10) {
+        header.classList.add("bg-white");
+        header.classList.add("shadow");
+        navcontent.classList.remove("bg-gray-100");
+        navcontent.classList.add("bg-white");
+      } else {
+        header.classList.remove("bg-white");
+        header.classList.remove("shadow");
+        navcontent.classList.remove("bg-white");
+        navcontent.classList.add("bg-gray-100");
+
+      }
+
+    });
+
+    //Javascript to toggle the menu
+    document.getElementById('nav-toggle').onclick = function () {
+      document.getElementById("nav-content").classList.toggle("hidden");
+    }
+  </script>
 
   {% block resource %}
   {% endblock resource %}

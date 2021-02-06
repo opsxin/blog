@@ -1,82 +1,110 @@
 {% extends 'subject/base.html' %}
-{% load static %}
+
+{% block link %}
+<style type="text/css">
+    .content ul {
+        list-style-type: disc;
+        list-style-position: inside;
+        list-style-image: none;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/github.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+{% endblock link %}
+
+{% block title %}
+<title>{{ article.title }}</title>
+{% endblock title %}
 
 {% block content %}
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('{% static "subject/img/post-bg.jpg" %}')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-heading">
-                    <h1>{{ article.title }}</h1>
-                    <span class="meta">Posted by
-                        <a href="#">Hsin</a>
-                        on 
-                        <time class="entry-date" datetime="2020-01-01T00:00:00+00:00">{{ article.modify_time }}</time></span>
-                </div>
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+    <div class="w-full px-4 md:px-6 text-lg text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+        <div class="font-sans">
+            <h1 class="font-bold font-sans break-normal text-gray-900 text-center pt-2 pb-2 text-3xl md:text-4xl">
+                {{ article.title }}</h1>
+            <p class="text-sm text-center md:text-base font-normal text-gray-600">{{ article.modify_time }}</p>
+        </div>
+        <div class="content font-serif">
+            {{ article.content | safe }}
+        </div>
+    </div>
+
+    {% if article.tags %}
+    <div class="text-base md:text-sm text-gray-500 px-4 py-4">
+        Tags:
+        {% for tag in article.tags %}
+        <a href="{% url 'subject:tag' tag.id %}"
+            class="text-base md:text-sm text-blue-500 no-underline hover:underline">{{ tag.name }}</a>.
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <hr class="border-b-2 border-gray-400 mb-8 mx-4">
+
+    <div class="font-sans flex justify-between content-center px-4 pb-8">
+        {% if pre_article.id != 0 %}
+        <div class="text-left">
+            <span class="text-sm md:text-sm font-normal text-gray-600">&larr;
+                <a href="{% url 'subject:article' pre_article.id %}"
+                    class="break-normal text-base md:text-sm text-blue-500 font-bold no-underline hover:underline">
+                    {{ pre_article.title }}</a></span>
+        </div>
+        {% else %}
+        <div class="text-left">
+            <span class="text-sm md:text-sm font-normal text-gray-600">&larr;
+                无上一篇文章</span>
+        </div>
+        {% endif %}
+        {% if next_article.id != 0 %}
+        <div class="text-right">
+            <span class="text-sm md:text-sm font-normal text-gray-600">
+                <a href="{% url 'subject:article' next_article.id %}"
+                    class="break-normal text-base md:text-sm text-blue-500 font-bold no-underline hover:underline">
+                    {{ next_article.title }}</a>&rarr;</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <hr class="border-b-2 border-gray-400 mx-4">
+
+    <div class="container py-4 px-4">
+        <div class="row bg-gradient-to-b bg-gray-100 rounded-lg">
+            <div class="w-full">
+                <div id="gitalk-container"></div>
             </div>
         </div>
     </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                {{ article.content | safe }}
-            </div>
-        </div>
-    </div>
-</article>
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            {% if article.tags %}
-            <hr>
-            {% for tag in article.tags %}
-            <i class="fas fa-tag" size="2x"></i> <a href="{% url 'subject:tag' tag.id %}">{{ tag.name }}</a>
-            {% endfor %}
-            {% endif %}
-            <hr>
-            {% if pre_article.id == 0 %}
-            <span class="disabled float-left">&larr; {{ pre_article.title }}</span>
-            {% else %}
-            <a href="{% url 'subject:article' pre_article.id %}" class="float-left">&larr; {{ pre_article.title }}</a>
-            {% endif %}
-            {% if next_article.id == 0 %}
-            <span class="disabled float-right">{{ next_article.title }} &rarr;</span>
-            {% else %}
-            <a href="{% url 'subject:article' next_article.id %}" class="float-right">{{ next_article.title }}
-                &rarr;</a>
-            {% endif %}
-        </div>
-    </div>
 </div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div id="gitalk-container"></div>
-        </div>
-    </div>
-</div>
-<hr>
 {% endblock content %}
 
 {% block resource %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/github.min.css">
+<script>
+    $(".content p").addClass("py-3")
+    $(".content h1,h2,h3,h4,h5,h6").addClass("py-2 font-sans")
+    $("ol,ul li").addClass("py-1 pl-2")
+    $(":not(pre) > code").addClass("text-red-400 pr-1 pl-1")
+    $(".content a").addClass("text-blue-500 no-underline hover:underline")
+    $("pre").addClass("rounded font-mono text-base p-2 md:p-3")
+    $(".content h1").addClass("text-3xl md:text-4xl")
+    $(".content h2").addClass("text-2xl md:text-3xl")
+    $(".content h2").after("<hr class='border-gray-300 mb-4 mx-2'>")
+    $(".content h3").addClass("text-xl md:text-2xl")
+    $(".content h4").addClass("text-lg md:text-xl")
+    $(".content h5").addClass("text-base md:text-lg")
+    $(".content h6").addClass("text-sm md:text-base")
+    $("blockquote").addClass("border-l-4 border-blue-500 italic my-8 pl-6 md:pl-6")
+    $("table").addClass("w-full text-left border-collapse board")
+    $("table  th ").addClass("z-20 border text-base font-semibold top-0 p-2 border-gray-300")
+    $("table > tbody").addClass("w-full text-left border-collapse")
+    $("table td").addClass("py-2 p-2 font-mono border text-sm border-gray-300")
+</script>
+
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
 <script>
     hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad({ singleLine: true });
 </script>
-<script>
-    $("table").addClass("table table-bordered table-striped");
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script>
     var gitalk = new Gitalk({
@@ -88,7 +116,6 @@
         id: location.pathname,
         distractionFreeMode: false
     })
-
     gitalk.render('gitalk-container')
 </script>
 {% endblock resource %}

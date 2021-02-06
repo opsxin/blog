@@ -18,13 +18,8 @@ class IndexView(PaginationMixin, ListView):
     model = Article
     template_name = "subject/index.html"
     context_object_name = "article_list"
-    paginate_by = 5
+    paginate_by = 8
 
-class PostView(PaginationMixin, ListView):
-    model = Article
-    template_name = "subject/post.html"
-    context_object_name = "article_list"
-    paginate_by = 20
 
 def link(request):
     tags = Tag.objects.all()
@@ -32,6 +27,7 @@ def link(request):
 
     return render(request, "subject/link.html", context={
         "tags": tags, "categories": categories})
+
 
 def article(request, id):
     article = get_object_or_404(Article, pk=id)
@@ -48,9 +44,6 @@ def article(request, id):
     article.tags = [{"name": tag.name, "id": tag.id}
                     for tag in article.tag.all()]
 
-    recomment_article = Article.objects.filter(
-        Q(category__name=article.category) & ~Q(title=article.title))[:5]
-
     try:
         pre_article = Article.objects.get(pk=id-1)
     except ObjectDoesNotExist:
@@ -64,8 +57,7 @@ def article(request, id):
     Article.objects.filter(pk=id).update(read_num=F('read_num') + 1)
 
     return render(request, "subject/article.html", context={
-        "article": article, "pre_article": pre_article,  "next_article": next_article,
-        "recomment_article": recomment_article})
+        "article": article, "pre_article": pre_article,  "next_article": next_article})
 
 
 class ArchiveView(IndexView):

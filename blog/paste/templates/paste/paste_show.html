@@ -1,28 +1,25 @@
 {% extends 'subject/base.html' %}
-{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/github.min.css">
+{% endblock link %}
+
+{% block title %}
+<title>Paste Show</title>
+{% endblock title %}
 
 {% block content %}
-<header class="masthead" style="background-image: url('{% static "subject/img/post-bg.jpg" %}')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Paste</h1>
-                </div>
-            </div>
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+    <h2 class="text-4xl mb-10 text-center font-semibold font-heading">Paste Show</h2>
+    <section class="py-4 px-4">
+        <div class="w-full max-w-2xl mx-auto mb-8">
+            <pre><code class="{{ contents.code_class }}">{% autoescape on %}{{ contents.message }}{% endautoescape %}</code></pre>
         </div>
-    </div>
-</header>
-
-<div class="container">
-    <pre><code class="{{ contents.code_class }}">{% autoescape on %}{{ contents.message }}{% endautoescape %}</code></pre>
+    </section>
 </div>
-<hr>
 {% endblock content %}
 
 {% block resource %}
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/styles/atom-one-light.min.css">
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.0/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% endblock resource %}

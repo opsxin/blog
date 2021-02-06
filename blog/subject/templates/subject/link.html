@@ -1,63 +1,24 @@
 {% extends 'subject/base.html' %}
-{% load static %}
 
 {% block content %}
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('{% static "subject/img/about-bg.jpg" %}')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="page-heading">
-          <h1>归档</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <h2 class="post-title">
-        主题
-      </h2>
-      <ul class="list-group">
-        {% for category in categories %}
-        <li class="list-group-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
-        {% endfor %}
-      </ul>
-      <br>
-      <h2 class="post-title">
-        标签
-      </h2>
-      <ul class="list-group list-group-horizontal">
-        {% for tag in tags %}
-        <li class="list-group-item"><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
+<div class="container w-full md:max-w-3xl mx-auto pt-20">
+  <div class="py-4 px-4">
+    <h3 class="text-2xl pb-4">主题</h3>
+    <ul class="grid grid-cols-3 gap-4">
+      {% for category in categories %}
+      <li class="bw-20 bh-20 text-lg"><a href="{{ category.get_absolute_url }}" class="text-blue-400">
+          {{ category.name }}</a></li>
+      {% endfor %}
+    </ul>
+    <h3 class="text-2xl py-4">标签</h3>
+    <ul class="grid grid-cols-3 gap-4">
+      {% for tag in tags %}
+      <li class="bw-20 bh-20 text-lg"><a href="{{ tag.get_absolute_url }}" class="text-blue-400">
+          {{ tag.name }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
+</div>
 
-<hr>
 {% endblock content %}
-
-{% block resource %}
-<style type="text/css">
-.list-group {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1em;
-}
-
-.list-group-item {
-  background: #F7F7F7;
-  padding: 1em;
-  text-align: center;
-  border-top-width: 1px !important;
-  border-left-width: 1px !important;
-}
-</style>
-{% endblock resource %}

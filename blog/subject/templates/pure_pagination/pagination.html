@@ -1,9 +1,34 @@
-<div class="clearfix">
-    {% if page_obj.has_previous %}
-    <a class="btn btn-primary float-left" href="?{{ page_obj.previous_page_number.querystring }}">&larr; 上一页</a>
-    {% endif %}
-    {% if page_obj.has_next %}
-    <a class="btn btn-primary float-right" href="?{{ page_obj.next_page_number.querystring }}">下一页 &rarr;</a>
-    {% endif %}
-    </ul>
+<div class="flex p-4">
+        <ul class="flex mx-auto list-reset border border-grey-light rounded">
+                {% if page_obj.has_previous %}
+                <li><a class="block px-3 py-2 text-gray-600 hover:text-white hover:bg-blue-700 border-r border-grey-light"
+                                href="?{{ page_obj.previous_page_number.querystring }}">&larr;</a>
+                </li>
+                {% else %}
+                <li class="disabled"><a class="block px-3 py-2 text-gray-600 border-r border-grey-light"
+                                href="#">&larr;</a></li>
+                {% endif %}
+                {% for page in page_obj.pages %}
+                {% if page %}
+                {% ifequal page page_obj.number %}
+                <li><a class="block px-3 py-2 text-white bg-blue-400 border-r border-grey-light" href="#">{{ page }}</a>
+                </li>
+                {% else %}
+                <li><a class="block px-3 py-2 text-white text-gray-600 hover:text-white hover:bg-blue-700 border-r border-grey-light"
+                                href="?{{ page.querystring }}">{{ page }}</a></li>
+                {% endifequal %}
+                {% else %}
+                <li class="disabled"><a class="block px-3 py-2 text-gray-600 border-r border-grey-light"
+                                href="#">...</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li><a class="block px-3 py-2 text-gray-600 hover:text-white hover:bg-blue-700 border-r border-grey-light"
+                                href="?{{ page_obj.next_page_number.querystring }}">&rarr;</a>
+                </li>
+                {% else %}
+                <li class="disabled"><a class="block px-3 py-2 text-gray-600 border-r border-grey-light"
+                                href="#">&rarr;</a></li>
+                {% endif %}
+        </ul>
 </div>
