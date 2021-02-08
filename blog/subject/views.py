@@ -107,3 +107,6 @@ class ContactView(ListView):
         except Exception:
             messages.error(request, "留言失败")
         return redirect(reverse("subject:contact"))
+
+def page_not_found(request, exception=None):
+    return render(request, 'subject/404.html')
