@@ -37,7 +37,7 @@ tag_dict = {
 }
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('ba/', admin.site.urls),
     path('', include("subject.urls")),
     path('', include("domain_whois.urls")),
     path('', include("paste.urls")),
@@ -48,3 +48,5 @@ urlpatterns = [
              'category': GenericSitemap(category_dict, priority=0.5)}},
          name='django.contrib.sitemaps.views.sitemap'),
 ]
+
+handler404 = 'subject.views.page_not_found'
