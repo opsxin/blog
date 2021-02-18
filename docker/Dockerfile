@@ -18,7 +18,7 @@ RUN apt update && apt install -y \
     whois libmariadb-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/opsxin/blog.git -b compose
+RUN git clone https://github.com/opsxin/blog.git
 RUN pip3 install -r blog/requirements.txt \
     -i https://pypi.tuna.tsinghua.edu.cn/simple
 
