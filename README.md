@@ -14,7 +14,7 @@ git clone https://github.com/opsxin/blog.git -b master
 
 切换路径到 *docker*
 
-重命名*.env-sample* 为 *.env*，并修改其中的内容
+重命名 *.env-sample* 为 *.env*，并修改其中的内容
 
 #### 前台启动
 
