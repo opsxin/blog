@@ -1,13 +1,6 @@
-Django==2.2.17
+Django==2.2.18
 django-pure-pagination==0.3.0
 Markdown==3.3.3
 mysqlclient==2.0.3
-packaging==20.8
-pkg-resources==0.0.0
-pyparsing==2.4.7
-pytz==2020.5
-six==1.15.0
-sqlparse==0.4.1
 uWSGI==2.0.19.1
-webencodings==0.5.1
 whois==0.9.7
