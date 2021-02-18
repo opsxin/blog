@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'f+t=dtgditelee&&5d*nh=uy58gn=8-bx7piw&3=tia0-m10)@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ["www.opsxin.com]
@@ -140,7 +140,7 @@ STATIC_ROOT = "/blog/static"
 # django-pure-pagination 分页设置
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 2,  # 分页条当前页前后应该显示的总页数（两边均匀分布，因此要设置为偶数），
-    'MARGIN_PAGES_DISPLAYED': 1,  # 分页条开头和结尾显示的页数
+    'MARGIN_PAGES_DISPLAYED': 2,  # 分页条开头和结尾显示的页数
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,  # 当请求了不存在页，显示第一页
 }
 
