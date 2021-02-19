@@ -78,3 +78,9 @@ def domain_cert(request, domain, port=443):
         print(e)
 
     return JsonResponse(d)
+
+def whois_tool(request):
+    return render(request, 'domain/whois.html')
+
+def cert_tool(request):
+    return render(request, 'domain/cert.html')
