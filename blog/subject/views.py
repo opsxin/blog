@@ -33,13 +33,8 @@ def article(request, id):
     article = get_object_or_404(Article, pk=id)
     md = Markdown(extensions=['markdown.extensions.extra',
                               TocExtension(slugify=slugify), ])
-    article.content = re.sub(
-        r"```(\w+)\s+([^`]+)```", r'<pre><code class="\1">\2</code></pre>', article.content)
-    content = article.content
+
     article.content = md.convert(article.content)
-    content = "# " + article.title + "\n" + content
-    md.convert(content)
-    article.toc = md.toc
 
     article.tags = [{"name": tag.name, "id": tag.id}
                     for tag in article.tag.all()]
@@ -107,6 +102,7 @@ class ContactView(ListView):
         except Exception:
             messages.error(request, "留言失败")
         return redirect(reverse("subject:contact"))
+
 
 def page_not_found(request, exception=None):
     return render(request, 'subject/404.html')
