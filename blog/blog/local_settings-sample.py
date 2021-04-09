@@ -8,3 +8,5 @@ DATABASES = {
        'PORT': 3306,
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
