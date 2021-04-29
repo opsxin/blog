@@ -1,0 +1,30 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "08:00"
+    timezone: Asia/Shanghai
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: whois
+    versions:
+    - 0.9.10
+    - 0.9.8
+    - 0.9.9
+  - dependency-name: django
+    versions:
+    - 3.1.5
+    - 3.1.6
+    - 3.1.7
+    - "3.2"
+  - dependency-name: markdown
+    versions:
+    - 3.3.4
+  - dependency-name: pytz
+    versions:
+    - "2021.1"
+  - dependency-name: packaging
+    versions:
+    - "20.9"
