@@ -1,6 +1,6 @@
 Django==3.2
 django-pure-pagination==0.3.0
 Markdown==3.3.4
-mysqlclient==2.0.3
+mysqlclient==2.1.1
 uWSGI==2.0.19.1
 whois==0.9.8
